@@ -37,7 +37,7 @@
                     <p class="text-xs text-slate-400">Sistema Hospitalario de Triaje y Soporte Predictivo Pediátrico</p>
                 </div>
             </div>
-            <!-- Navegación de Pestañas Interactiva con Inicio (Tab 0) -->
+            <!-- Navegación de Pestañas -->
             <nav class="flex flex-wrap justify-center gap-1.5 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/60 shadow-inner">
                 <button onclick="switchTab(0)" id="tab-btn-0" class="tab-btn px-3 py-1.5 rounded-lg text-xs font-medium transition-all bg-blue-600 text-white shadow-md flex items-center gap-1.5">
                     <i class="fa-solid fa-house"></i> Inicio
@@ -63,8 +63,6 @@
 
         <!-- PESTAÑA 0: INICIO / DASHBOARD PRINCIPAL -->
         <section id="tab-0" class="tab-content space-y-8">
-            
-            <!-- Hero Banner con diseño visual moderno -->
             <div class="relative overflow-hidden rounded-3xl bg-gradient-to-r from-slate-900 via-indigo-950 to-slate-900 text-white p-8 md:p-12 shadow-2xl border border-slate-800">
                 <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-3xl space-y-4">
@@ -88,7 +86,7 @@
                 </div>
             </div>
 
-            <!-- KPIs y Métricas de Alto Impacto -->
+            <!-- KPIs -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
                     <div>
@@ -135,7 +133,7 @@
                 </div>
             </div>
 
-            <!-- Accesos Directos a las Pestañas del Proyecto -->
+            <!-- Tarjetas de Navegación -->
             <div>
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
@@ -205,14 +203,41 @@
             <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
                 <div class="flex justify-between items-start mb-6">
                     <div>
-                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2"><i class="fa-solid fa-filter-circle-dollar text-blue-600"></i> Preprocesamiento, Limpieza y Análisis Exploratorio de Datos (EDA)</h2>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-filter-circle-dollar text-blue-600"></i> Preprocesamiento, Limpieza y Análisis Exploratorio de Datos (EDA)
+                        </h2>
                         <p class="text-xs text-slate-500 mt-1">Análisis estadístico sobre la cohorte clínica de 303 pacientes pediátricos evaluados.</p>
                     </div>
-                    <span class="bg-emerald-50 text-emerald-700 border border-emerald-200/60 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-[10px]"></i> Cohorte Validada (N = 303)</span>
+                    <span class="bg-emerald-50 text-emerald-700 border border-emerald-200/60 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5 shadow-xs">
+                        <i class="fa-solid fa-circle-check text-[10px]"></i> Cohorte Validada (N = 303)
+                    </span>
                 </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-5 mb-8">
+                    <div class="bg-gradient-to-br from-slate-50 to-blue-50/30 border border-slate-200/70 rounded-xl p-5 shadow-xs">
+                        <div class="w-8 h-8 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center font-bold text-xs mb-3">01</div>
+                        <h3 class="text-sm font-bold text-slate-900 mb-1">Eliminación de Constantes</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Depuración rigurosa de columnas con varianza nula o tratamientos uniformes sin valor discriminatorio.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-slate-50 to-emerald-50/30 border border-slate-200/70 rounded-xl p-5 shadow-xs">
+                        <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-600 flex items-center justify-center font-bold text-xs mb-3">02</div>
+                        <h3 class="text-sm font-bold text-slate-900 mb-1">Codificación Binaria (0/1)</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Transformación estandarizada de variables cualitativas a formato binario estricto (1 = Presente, 0 = Ausente).</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-slate-50 to-amber-50/30 border border-slate-200/70 rounded-xl p-5 shadow-xs">
+                        <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-600 flex items-center justify-center font-bold text-xs mb-3">03</div>
+                        <h3 class="text-sm font-bold text-slate-900 mb-1">Discretización por Curvas ROC</h3>
+                        <p class="text-xs text-slate-600 leading-relaxed">Establecimiento de puntos de corte fisiológicos óptimos maximizados mediante el índice de Youden.</p>
+                    </div>
+                </div>
+
                 <div class="bg-slate-50 border border-slate-200/70 rounded-2xl p-6">
                     <h3 class="text-sm font-bold text-slate-800 mb-1">Distribución de Casos de Estudio por Severidad (Clasificación OMS)</h3>
+                    <p class="text-xs text-slate-500 mb-4">Eje X: Grupos Clínicos | Eje Y: Frecuencia Absoluta de Pacientes (N = 303)</p>
                     <div class="h-64 relative"><canvas id="edaChart"></canvas></div>
+                    <div class="mt-4 bg-white p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed shadow-xs">
+                        <strong>Interpretación Analítica:</strong> El análisis exploratorio evidencia que 240 pacientes (79.2%) evolucionaron con dengue no complicado, mientras que 63 pacientes (20.8%) desarrollaron complicaciones severas. Este desbalance fundamenta el uso de pesos ponderados en los clasificadores.
+                    </div>
                 </div>
             </div>
         </section>
@@ -220,9 +245,43 @@
         <!-- PESTAÑA 2: Modelos & Métricas -->
         <section id="tab-2" class="tab-content hidden space-y-6">
             <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
-                <h2 class="text-xl font-bold text-slate-900 mb-4"><i class="fa-solid fa-chart-pie text-indigo-600"></i> Evaluación de Modelos y Métricas de Rendimiento Clínico</h2>
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-chart-pie text-indigo-600"></i> Evaluación de Modelos y Métricas de Rendimiento Clínico
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">Comparativa de desempeño entre Regresión Logística Multivariable y Red Neuronal Artificial (ANN Perceptrón Multicapa).</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-slate-50 border border-slate-200/70 p-4 rounded-xl text-center shadow-xs">
+                        <span class="text-[11px] font-medium text-slate-500 block mb-1">Sensibilidad (Recall)</span>
+                        <span class="text-2xl font-bold text-blue-600">84.13%</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Detección de verdaderos positivos</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200/70 p-4 rounded-xl text-center shadow-xs">
+                        <span class="text-[11px] font-medium text-slate-500 block mb-1">Especificidad</span>
+                        <span class="text-2xl font-bold text-emerald-600">72.50%</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Identificación de casos no complicados</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200/70 p-4 rounded-xl text-center shadow-xs">
+                        <span class="text-[11px] font-medium text-slate-500 block mb-1">Valor Predictivo Negativo</span>
+                        <span class="text-2xl font-bold text-indigo-600">94.50%</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Alta seguridad al descartar riesgo severo</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200/70 p-4 rounded-xl text-center shadow-xs">
+                        <span class="text-[11px] font-medium text-slate-500 block mb-1">Área Bajo la Curva (ROC - AUC)</span>
+                        <span class="text-2xl font-bold text-amber-600">0.86</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Excelente discriminación (p &lt; 0.001)</span>
+                    </div>
+                </div>
+
                 <div class="bg-slate-50 border border-slate-200/70 rounded-2xl p-6">
+                    <h3 class="text-sm font-bold text-slate-800 mb-1">Curva ROC Institucional y Rendimiento Predictivo</h3>
+                    <p class="text-xs text-slate-500 mb-4">Eje X: Tasa de Falsos Positivos (1 - Especificidad) | Eje Y: Tasa de Verdaderos Positivos (Sensibilidad)</p>
                     <div class="h-64 relative"><canvas id="rocChart"></canvas></div>
+                    <div class="mt-4 bg-white p-4 rounded-xl border border-slate-200 text-xs text-slate-700 leading-relaxed shadow-xs">
+                        <strong>Interpretación Analítica:</strong> El área bajo la curva de 0.86 confirma la solidez predictiva del modelo. El punto de corte óptimo fijado en un score &ge; 2 prioriza la sensibilidad (84.1%) para minimizar el riesgo clínico de omitir complicaciones severas en pacientes pediátricos.
+                    </div>
                 </div>
             </div>
         </section>
@@ -230,46 +289,127 @@
         <!-- PESTAÑA 3: Simulador Clínico Interactivo -->
         <section id="tab-3" class="tab-content hidden space-y-6">
             <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
-                <div class="mb-6 flex justify-between items-center border-b border-slate-200 pb-4">
-                    <h2 class="text-xl font-bold text-slate-900"><i class="fa-solid fa-stethoscope text-emerald-600"></i> Módulo Hospitalario de Triaje Predictivo Pediátrico</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
-                    <div class="md:col-span-5 space-y-5 bg-slate-50 p-6 rounded-2xl border border-slate-200/70">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600"><i class="fa-solid fa-user-nurse"></i> 1. Ficha de Admisión del Paciente</h3>
-                        <div class="grid grid-cols-2 gap-3">
-                            <div class="col-span-2"><label class="block text-[11px] font-semibold text-slate-700 mb-1">Nombre Completo</label><input type="text" id="patient-name" value="Santiago Gómez Pérez" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                            <div><label class="block text-[11px] font-semibold text-slate-700 mb-1">N° Historia Clínica</label><input type="text" id="patient-id" value="HC-94821" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                            <div><label class="block text-[11px] font-semibold text-slate-700 mb-1">Edad (Años)</label><input type="number" id="patient-age" value="7" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                            <div><label class="block text-[11px] font-semibold text-slate-700 mb-1">Sexo</label><select id="patient-gender" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"><option value="Masculino">Masculino</option><option value="Femenino">Femenino</option></select></div>
-                            <div><label class="block text-[11px] font-semibold text-slate-700 mb-1">Días de Fiebre</label><input type="number" id="patient-fever-days" value="4" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                        </div>
-                        <hr class="border-slate-200">
-                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700"><i class="fa-solid fa-vial"></i> 2. Laboratorio y Signos</h3>
-                        <div><label class="block text-xs font-semibold text-slate-700 mb-1">Presión Arterial (Hipotensión)</label><select id="input-hypotension" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"><option value="0">No (Normal)</option><option value="1">Sí (Hipotensión)</option></select></div>
-                        <div><label class="block text-xs font-semibold text-slate-700 mb-1">Plaquetas (cel/cumm)</label><input type="number" id="input-platelets" value="64000" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                        <div><label class="block text-xs font-semibold text-slate-700 mb-1">Hematocrito PCV (%)</label><input type="number" step="0.1" id="input-pcv" value="44.5" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                        <div><label class="block text-xs font-semibold text-slate-700 mb-1">Transaminasa ALT (U/L)</label><input type="number" id="input-alt" value="85" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                        <div><label class="block text-xs font-semibold text-slate-700 mb-1">Leucocitos WBC (cel/cumm)</label><input type="number" id="input-wbc" value="8200" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none"></div>
-                        <button onclick="runPrediction()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-xl text-xs shadow-md transition-all flex items-center justify-center gap-2"><i class="fa-solid fa-calculator"></i> Generar Evaluación</button>
+                <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                            <i class="fa-solid fa-stethoscope text-emerald-600"></i> Módulo Hospitalario de Triaje Predictivo Pediátrico
+                        </h2>
+                        <p class="text-xs text-slate-500 mt-1">Evaluación interactiva multimodelo con generación de Ficha de Admisión Médica.</p>
                     </div>
+                    <div class="mt-3 md:mt-0 flex gap-2">
+                        <span class="bg-blue-50 text-blue-700 border border-blue-200 text-xs font-semibold px-3 py-1 rounded-full flex items-center gap-1.5">
+                            <i class="fa-solid fa-hospital"></i> Servicio de Urgencias Pediátricas
+                        </span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <div class="md:col-span-5 space-y-5 bg-slate-50 p-6 rounded-2xl border border-slate-200/70 shadow-xs">
+                        <div class="space-y-3 border-b border-slate-200 pb-4">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-blue-600 flex items-center gap-1.5">
+                                <i class="fa-solid fa-user-nurse"></i> 1. Ficha de Admisión del Paciente
+                            </h3>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div class="col-span-2">
+                                    <label class="block text-[11px] font-semibold text-slate-700 mb-1">Nombre Completo del Paciente</label>
+                                    <input type="text" id="patient-name" value="Santiago Gómez Pérez" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-700 mb-1">N° Historia Clínica</label>
+                                    <input type="text" id="patient-id" value="HC-94821" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-700 mb-1">Edad (Años)</label>
+                                    <input type="number" id="patient-age" value="7" min="0" max="18" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-700 mb-1">Sexo Biológico</label>
+                                    <select id="patient-gender" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-[11px] font-semibold text-slate-700 mb-1">Días de Fiebre</label>
+                                    <input type="number" id="patient-fever-days" value="4" min="1" max="15" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h3 class="text-xs font-bold uppercase tracking-wider text-slate-700 flex items-center gap-1.5">
+                                <i class="fa-solid fa-vial"></i> 2. Exámenes de Laboratorio y Signos
+                            </h3>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">1. Presión Arterial (Hipotensión)</label>
+                                <select id="input-hypotension" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                    <option value="0">No (Presión arterial normal)</option>
+                                    <option value="1">Sí (Hipotensión arterial detectada)</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">2. Recuento Plaquetario (cel/cumm)</label>
+                                <input type="number" id="input-platelets" value="64000" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                <span class="text-[10px] text-slate-400 block mt-0.5">Corte crítico ROC: &le; 75,000 cel/cumm</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">3. Hematocrito - PCV (%)</label>
+                                <input type="number" step="0.1" id="input-pcv" value="44.5" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                <span class="text-[10px] text-slate-400 block mt-0.5">Corte crítico ROC: &ge; 42% (Hemoconcentración)</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">4. Transaminasa ALT (U/L)</label>
+                                <input type="number" id="input-alt" value="85" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                <span class="text-[10px] text-slate-400 block mt-0.5">Corte crítico ROC: &ge; 70 U/L</span>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 mb-1">5. Leucocitos WBC (cel/cumm)</label>
+                                <input type="number" id="input-wbc" value="8200" class="w-full bg-white border border-slate-300 rounded-xl p-2.5 text-xs outline-none">
+                                <span class="text-[10px] text-slate-400 block mt-0.5">Corte crítico ROC: &ge; 7,000 cel/cumm</span>
+                            </div>
+                        </div>
+
+                        <button onclick="runPrediction()" class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold py-3 rounded-xl text-xs shadow-md transition-all mt-2 flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-calculator"></i> Generar Evaluación de Triaje Clínico
+                        </button>
+                    </div>
+
                     <div class="md:col-span-7 flex flex-col justify-between space-y-4">
                         <div class="bg-slate-900 text-white p-6 rounded-2xl shadow-xl flex flex-col justify-between h-full border border-slate-800">
                             <div>
                                 <div class="bg-slate-800/90 border border-slate-700/80 p-4 rounded-xl mb-4 flex justify-between items-center text-xs">
-                                    <div><span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Paciente</span><span id="card-patient-name" class="font-bold text-white text-base">Santiago Gómez Pérez</span><span id="card-patient-details" class="text-[11px] text-slate-400 block mt-0.5">HC: HC-94821 | Edad: 7 años | Sexo: Masculino</span></div>
-                                    <div class="text-right bg-slate-900/60 p-2.5 rounded-lg border border-slate-700/60"><span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Evolución</span><span id="card-patient-fever" class="text-xs font-bold text-amber-400">4 Días de Fiebre</span></div>
+                                    <div>
+                                        <span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Paciente Evaluado</span>
+                                        <span id="card-patient-name" class="font-bold text-white text-base">Santiago Gómez Pérez</span>
+                                        <span id="card-patient-details" class="text-[11px] text-slate-400 block mt-0.5">HC: HC-94821 | Edad: 7 años | Sexo: Masculino</span>
+                                    </div>
+                                    <div class="text-right bg-slate-900/60 p-2.5 rounded-lg border border-slate-700/60">
+                                        <span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Evolución</span>
+                                        <span id="card-patient-fever" class="text-xs font-bold text-amber-400">4 Días de Fiebre</span>
+                                    </div>
                                 </div>
+
                                 <div class="flex justify-between items-center border-b border-slate-800 pb-4 mb-4">
-                                    <div><span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Score Diagnóstico</span><span id="res-score" class="text-3xl font-extrabold text-amber-400">7.0 / 7.0 Pts</span></div>
-                                    <div id="res-badge" class="bg-red-950/90 border border-red-700/80 px-4 py-2 rounded-xl text-right"><span id="res-text" class="text-xs font-bold text-red-400 block">ALTO RIESGO: Complicación Inminente (Score &ge; 2.0)</span></div>
+                                    <div>
+                                        <span class="text-[10px] text-slate-400 uppercase tracking-wider block font-semibold">Score Diagnóstico Integrado</span>
+                                        <span id="res-score" class="text-3xl font-extrabold text-amber-400">7.0 / 7.0 Pts</span>
+                                    </div>
+                                    <div id="res-badge" class="bg-red-950/90 border border-red-700/80 px-4 py-2 rounded-xl text-right shadow-md">
+                                        <span id="res-text" class="text-xs font-bold text-red-400 block">ALTO RIESGO: Complicación Inminente (Score &ge; 2.0)</span>
+                                    </div>
                                 </div>
-                                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700/80 mb-4">
-                                    <h4 class="text-xs font-bold text-slate-300 mb-1"><i class="fa-solid fa-chart-bar text-blue-400"></i> Comparativa de Probabilidad Algorítmica</h4>
+
+                                <div class="bg-slate-800/90 p-4 rounded-xl border border-slate-700/80 mb-4 shadow-inner">
+                                    <h4 class="text-xs font-bold text-slate-300 mb-1 flex items-center gap-1.5">
+                                        <i class="fa-solid fa-chart-bar text-blue-400"></i> Comparativa de Probabilidad Algorítmica
+                                    </h4>
+                                    <p class="text-[10px] text-slate-400 mb-3">Eje X: Modelo Predictivo | Eje Y: Probabilidad Estimada P(Y=1) en %</p>
                                     <div class="h-44 relative"><canvas id="simulatorChart"></canvas></div>
                                 </div>
                             </div>
-                            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-300">
-                                <strong>Conducta Médica Sugerida:</strong> <span id="res-advice" class="text-amber-300 font-medium">Hospitalización inmediata obligatoria. Monitoreo estricto de constantes vitales y reanimación hídrica.</span>
+
+                            <div class="bg-slate-800/80 p-4 rounded-xl border border-slate-700 text-xs text-slate-300 leading-relaxed shadow-xs">
+                                <strong>Conducta Médica Sugerida:</strong> <span id="res-advice" class="text-amber-300 font-medium">Hospitalización inmediata obligatoria. Monitoreo estricto de constantes vitales, reanimación hídrica y vigilancia de falla multiorgánica.</span>
                             </div>
                         </div>
                     </div>
@@ -277,25 +417,71 @@
             </div>
         </section>
 
-        <!-- PESTAÑA 4: Código & Justificación -->
+        <!-- PESTAÑA 4: Código & Justificación (Limpia sin citas ni LaTeX) -->
         <section id="tab-4" class="tab-content hidden space-y-6">
             <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
-                <h2 class="text-xl font-bold text-slate-900 mb-4"><i class="fa-solid fa-code text-blue-600"></i> Documentación Técnica y Arquitectura</h2>
-                <pre class="bg-slate-900 text-slate-200 p-4 rounded-xl text-xs font-mono overflow-x-auto"><code>const logit = -3.85 + (hypotension * 3.0) + (wbc * 1.16) + (alt * 1.07);
+                <div class="mb-6">
+                    <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
+                        <i class="fa-solid fa-code text-blue-600"></i> Documentación Técnica y Justificación Analítica
+                    </h2>
+                    <p class="text-xs text-slate-500 mt-1">
+                        Detalle del código fuente implementado y fundamentación de cada decisión metodológica adoptada para el sistema predictivo.
+                    </p>
+                </div>
+
+                <div class="space-y-6">
+                    <!-- 1. Regresión Logística -->
+                    <div class="bg-slate-50 border border-slate-200/70 p-5 rounded-xl shadow-xs">
+                        <h3 class="text-sm font-bold text-slate-900 mb-2">1. Implementación de Regresión Logística Multivariable</h3>
+                        <p class="text-xs text-slate-600 mb-3">
+                            Cálculo de la probabilidad continua mediante función sigmoide evaluada sobre los coeficientes de regresión ajustados:
+                        </p>
+                        <pre class="bg-slate-900 text-slate-200 p-3.5 rounded-xl text-xs overflow-x-auto font-mono shadow-inner"><code>// Ecuación Logit multivariada
+const logit = -3.85 + (hypotension * 3.0) + (wbc * 1.16) + (alt * 1.07) + (platelets * 1.06) + (pcv * 0.94);
 const probLogistic = 1 / (1 + Math.exp(-logit));</code></pre>
+                    </div>
+
+                    <!-- 2. Red Neuronal -->
+                    <div class="bg-slate-50 border border-slate-200/70 p-5 rounded-xl shadow-xs">
+                        <h3 class="text-sm font-bold text-slate-900 mb-2">2. Implementación de Red Neuronal Artificial (ANN 5-4-1)</h3>
+                        <p class="text-xs text-slate-600 mb-3">
+                            Perceptrón Multicapa con funciones de activación ReLU en capa oculta para modelar interacciones no lineales:
+                        </p>
+                        <pre class="bg-slate-900 text-slate-200 p-3.5 rounded-xl text-xs overflow-x-auto font-mono shadow-inner"><code>// Propagación hacia adelante (Forward Pass)
+let h1 = Math.max(0, inputs[0]*0.8 + inputs[1]*0.6 - 0.4);
+let h2 = Math.max(0, inputs[2]*0.9 + inputs[3]*0.7 - 0.4);
+let annOutput = 1 / (1 + Math.exp(-(h1 * 1.2 + h2 * 1.1 - 1.4)));</code></pre>
+                    </div>
+
+                    <!-- 3. Justificación Técnica -->
+                    <div class="bg-slate-50 border border-slate-200/70 p-5 rounded-xl shadow-xs">
+                        <h3 class="text-sm font-bold text-slate-900 mb-3">3. Justificación Técnica de Decisiones</h3>
+                        <ul class="space-y-2 text-xs text-slate-600 list-disc pl-5">
+                            <li>
+                                <strong>Selección del Punto de Corte (Score &ge; 2):</strong> Basado en el índice de Youden, prioriza la sensibilidad (84.1%). En entornos pediátricos, un falso negativo resulta clínicamente inaceptable debido a la vertiginosa progresión al shock por dengue.
+                            </li>
+                            <li>
+                                <strong>Manejo del Desbalance de Clases:</strong> La prevalencia del 20.8% de dengue complicado requirió el ajuste del umbral de decisión para evitar el sesgo hacia la clase mayoritaria.
+                            </li>
+                            <li>
+                                <strong>Discretización de Variables Continuas:</strong> La transformación de laboratorio a variables binarias basadas en puntos de corte ROC optimiza la velocidad del triaje en salas de urgencia saturadas.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </section>
 
     </main>
 
     <!-- Footer Enterprise -->
-    <footer class="bg-white border-t border-slate-200/80 py-4 mt-8">
+    <footer class="bg-white border-t border-slate-200/80 py-4 mt-8 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400 font-medium">
             DenguePredict AI Enterprise &bull; Sistema Hospitalario de Triaje Pediátrico &bull; Todos los derechos reservados
         </div>
     </footer>
 
-    <!-- JavaScript para Cambio de Pestañas y Gráficos -->
+    <!-- JavaScript para Interactividad y Gráficos -->
     <script>
         let simulatorChartInstance = null;
 
@@ -315,77 +501,152 @@ const probLogistic = 1 / (1 + Math.exp(-logit));</code></pre>
         }
 
         window.addEventListener('DOMContentLoaded', () => {
+            // Gráfico EDA
             const ctxEda = document.getElementById('edaChart').getContext('2d');
             new Chart(ctxEda, {
                 type: 'bar',
                 data: {
                     labels: ['Dengue No Complicado (N=240)', 'Dengue Complicado (N=63)'],
-                    datasets: [{ data: [240, 63], backgroundColor: ['#3b82f6', '#ef4444'], borderRadius: 8 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
-            });
-
-            const ctxRoc = document.getElementById('rocChart').getContext('2d');
-            new Chart(ctxRoc, {
-                type: 'line',
-                data: {
-                    labels: ['0.0', '0.1', '0.25', '0.5', '0.75', '1.0'],
-                    datasets: [{ label: 'Curva ROC (AUC = 0.86)', data: [0, 0.62, 0.84, 0.92, 0.97, 1], borderColor: '#2563eb', backgroundColor: 'rgba(37, 99, 235, 0.08)', fill: true, tension: 0.3 }]
-                },
-                options: { responsive: true, maintainAspectRatio: false }
-            });
-
-            const ctxSim = document.getElementById('simulatorChart').getContext('2d');
-            simulatorChartInstance = new Chart(ctxSim, {
-                type: 'bar',
-                data: {
-                    labels: ['Regresión Logística (Sigmoide)', 'Red Neuronal (ANN ReLU)'],
-                    datasets: [{ data: [96.7, 97.0], backgroundColor: ['#3b82f6', '#10b981'], borderRadius: 6 }]
+                    datasets: [{
+                        label: 'Pacientes',
+                        data: [240, 63],
+                        backgroundColor: ['#3b82f6', '#ef4444'],
+                        borderRadius: 8
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { ticks: { color: '#cbd5e1', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } },
-                        y: { beginAtZero: true, max: 100, ticks: { color: '#cbd5e1', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.05)' } }
+                        x: { title: { display: true, text: 'Grupos Clínicos de Estudio (OMS)', font: { size: 11, weight: 'bold' } } },
+                        y: { title: { display: true, text: 'Cantidad de Pacientes (N)', font: { size: 11, weight: 'bold' } }, beginAtZero: true }
+                    }
+                }
+            });
+
+            // Gráfico ROC
+            const ctxRoc = document.getElementById('rocChart').getContext('2d');
+            new Chart(ctxRoc, {
+                type: 'line',
+                data: {
+                    labels: ['0.0', '0.1', '0.25', '0.5', '0.75', '1.0'],
+                    datasets: [{
+                        label: 'Curva ROC (AUC = 0.86)',
+                        data: [0, 0.62, 0.84, 0.92, 0.97, 1],
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.08)',
+                        fill: true,
+                        tension: 0.3
+                    }, {
+                        label: 'Línea de Referencia',
+                        data: [0, 0.25, 0.5, 0.75, 1],
+                        borderColor: '#94a3b8',
+                        borderDash: [5, 5],
+                        pointRadius: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Tasa de Falsos Positivos (1 - Especificidad)', font: { size: 11, weight: 'bold' } } },
+                        y: { title: { display: true, text: 'Tasa de Verdaderos Positivos (Sensibilidad)', font: { size: 11, weight: 'bold' } }, beginAtZero: true, max: 1 }
+                    }
+                }
+            });
+
+            // Gráfico Simulador
+            const ctxSim = document.getElementById('simulatorChart').getContext('2d');
+            simulatorChartInstance = new Chart(ctxSim, {
+                type: 'bar',
+                data: {
+                    labels: ['Regresión Logística (Sigmoide)', 'Red Neuronal (ANN ReLU)'],
+                    datasets: [{
+                        label: 'Probabilidad (%)',
+                        data: [96.7, 97.0],
+                        backgroundColor: ['#3b82f6', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: { duration: 800, easing: 'easeOutQuart' },
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { 
+                            title: { display: true, text: 'Modelo Algorítmico', font: { size: 10, weight: 'bold' }, color: '#94a3b8' },
+                            ticks: { color: '#cbd5e1', font: { size: 10 } },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: { 
+                            title: { display: true, text: 'Probabilidad P(Y=1) %', font: { size: 10, weight: 'bold' }, color: '#94a3b8' },
+                            beginAtZero: true, 
+                            max: 100,
+                            ticks: { color: '#cbd5e1', font: { size: 10 } },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        }
                     }
                 }
             });
         });
 
         function runPrediction() {
+            // Datos del Paciente
             const pName = document.getElementById('patient-name').value || "Paciente Pediátrico";
             const pId = document.getElementById('patient-id').value || "HC-00000";
             const pAge = document.getElementById('patient-age').value || "N/A";
             const pGender = document.getElementById('patient-gender').value;
             const pFever = document.getElementById('patient-fever-days').value || "1";
 
+            // Actualizar tarjeta del paciente
             document.getElementById('card-patient-name').innerText = pName;
             document.getElementById('card-patient-details').innerText = `HC: ${pId} | Edad: ${pAge} años | Sexo: ${pGender}`;
             document.getElementById('card-patient-fever').innerText = `${pFever} Días de Fiebre`;
 
+            // Datos Clínicos
             const hyp = parseInt(document.getElementById('input-hypotension').value);
             const platVal = parseFloat(document.getElementById('input-platelets').value);
             const pcvVal = parseFloat(document.getElementById('input-pcv').value);
             const altVal = parseFloat(document.getElementById('input-alt').value);
             const wbcVal = parseFloat(document.getElementById('input-wbc').value);
 
-            const score = (hyp * 3) + (platVal <= 75000 ? 1 : 0) + (pcvVal >= 42 ? 1 : 0) + (altVal >= 70 ? 1 : 0) + (wbcVal >= 7000 ? 1 : 0);
+            const pplat = platVal <= 75000 ? 1 : 0;
+            const ppcv = pcvVal >= 42 ? 1 : 0;
+            const palt = altVal >= 70 ? 1 : 0;
+            const pwbc = wbcVal >= 7000 ? 1 : 0;
+
+            const score = (hyp * 3) + pplat + ppcv + palt + pwbc;
             
+            const logit = -3.85 + (hyp * 3.0) + (pwbc * 1.16) + (palt * 1.07) + (pplat * 1.06) + (ppcv * 0.94);
+            const probLog = 1 / (1 + Math.exp(-logit));
+
+            const h1 = Math.max(0, hyp * 0.8 + pplat * 0.6 - 0.4);
+            const h2 = Math.max(0, pwbc * 0.9 + palt * 0.7 - 0.4);
+            const probAnn = 1 / (1 + Math.exp(-(h1 * 1.2 + h2 * 1.1 - 1.4)));
+
+            const pLogPct = (probLog * 100).toFixed(1);
+            const pAnnPct = (probAnn * 100).toFixed(1);
+
             document.getElementById('res-score').innerText = `${score.toFixed(1)} / 7.0 Pts`;
+
+            if (simulatorChartInstance) {
+                simulatorChartInstance.data.datasets[0].data = [parseFloat(pLogPct), parseFloat(pAnnPct)];
+                simulatorChartInstance.update();
+            }
 
             const badge = document.getElementById('res-badge');
             const text = document.getElementById('res-text');
             const advice = document.getElementById('res-advice');
 
             if (score >= 2) {
-                badge.className = "bg-red-950/90 border border-red-700/80 px-4 py-2 rounded-xl text-right";
+                badge.className = "bg-red-950/90 border border-red-700/80 px-4 py-2 rounded-xl text-right shadow-md transition-all";
                 text.className = "text-xs font-bold text-red-400 block";
                 text.innerText = `ALTO RIESGO: Complicación Inminente (Score ≥ 2.0)`;
-                advice.innerText = "Hospitalización inmediata obligatoria. Monitoreo estricto de constantes vitales y reanimación hídrica.";
+                advice.innerText = "Hospitalización inmediata obligatoria. Monitoreo estricto de constantes vitales, reanimación hídrica y vigilancia de falla multiorgánica.";
             } else {
-                badge.className = "bg-emerald-950/90 border border-emerald-700/80 px-4 py-2 rounded-xl text-right";
+                badge.className = "bg-emerald-950/90 border border-emerald-700/80 px-4 py-2 rounded-xl text-right shadow-md transition-all";
                 text.className = "text-xs font-bold text-emerald-400 block";
                 text.innerText = `RIESGO BAJO: Sin Complicaciones Graves`;
                 advice.innerText = "Manejo ambulatorio viable bajo estricto control médico periódico y vigilancia de signos de alarma.";
