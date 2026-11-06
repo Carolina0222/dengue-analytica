@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DenguePredict AI - Plataforma Avanzada de Analítica Pediátrica</title>
+    <title>DenguePredict AI - Sistema Inteligente de Analítica Pediátrica</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Chart.js -->
@@ -25,30 +25,33 @@
 
     <!-- Header / Navbar Enterprise -->
     <header class="bg-slate-900 border-b border-slate-800 text-white shadow-xl sticky top-0 z-50 backdrop-blur-md bg-opacity-95">
-        <div class="max-w-7xl mx-auto px-4 py-3.5 flex flex-col md:flex-row justify-between items-center">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
             <div class="flex items-center space-x-3 mb-3 md:mb-0 cursor-pointer" onclick="switchTab(0)">
                 <div class="bg-gradient-to-tr from-blue-600 to-indigo-600 p-2.5 rounded-xl text-white shadow-lg ring-1 ring-blue-400/30">
                     <i class="fa-solid fa-hospital-user text-xl"></i>
                 </div>
                 <div>
                     <h1 class="text-base font-bold tracking-tight text-white flex items-center gap-2">
-                        DenguePredict AI <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-emerald-500/30">Clinical Suite v4.0</span>
+                        DenguePredict AI 
+                        <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-emerald-500/30 flex items-center gap-1">
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Hospital Ready v4.2
+                        </span>
                     </h1>
-                    <p class="text-xs text-slate-400">Sistema Hospitalario de Triaje y Soporte Predictivo Pediátrico</p>
+                    <p class="text-xs text-slate-400">Sistema de Triaje y Soporte Predictivo en Dengue Pediátrico</p>
                 </div>
             </div>
-            <!-- Navegación de Pestañas (Sin Pestaña 4) -->
+            <!-- Navegación de Pestañas (3 Pestañas funcionales + Inicio) -->
             <nav class="flex flex-wrap justify-center gap-1.5 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/60 shadow-inner">
-                <button onclick="switchTab(0)" id="tab-btn-0" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all bg-blue-600 text-white shadow-md flex items-center gap-1.5">
+                <button onclick="switchTab(0)" id="tab-btn-0" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-blue-600 text-white shadow-md flex items-center gap-1.5">
                     <i class="fa-solid fa-house"></i> Inicio
                 </button>
-                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-database"></i> 1. Limpieza & EDA
                 </button>
-                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-brain"></i> 2. Modelos & Métricas
                 </button>
-                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-3.5 py-1.5 rounded-lg text-xs font-medium transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-stethoscope"></i> 3. Simulador Clínico
                 </button>
             </nav>
@@ -64,13 +67,13 @@
                 <div class="absolute -right-10 -bottom-10 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 max-w-3xl space-y-4">
                     <div class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-3.5 py-1.5 rounded-full text-blue-400 text-xs font-semibold">
-                        <i class="fa-solid fa-shield-halved"></i> Sistema Inteligente de Alerta Temprana Hospitalaria
+                        <i class="fa-solid fa-shield-halved"></i> Validación Clínica sobre Cohorte N = 303 Pacientes
                     </div>
                     <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
                         Predicción y Triaje Pediátrico en <span class="bg-gradient-to-r from-blue-400 to-emerald-400 bg-clip-text text-transparent">Dengue Severo</span>
                     </h1>
                     <p class="text-slate-300 text-sm md:text-base leading-relaxed">
-                        Plataforma clínica integrada para la evaluación del riesgo de complicaciones graves en pacientes pediátricos mediante Inteligencia Artificial (Redes Neuronales) y Analítica Multivariable (Regresión Logística).
+                        Plataforma clínica de alta precisión desarrollada para urgencias pediátricas. Integra Inteligencia Artificial (Red Neuronal ANN) y Regresión Logística Multivariable para detectar precozmente el riesgo de complicaciones severas.
                     </p>
                     <div class="pt-2 flex flex-wrap gap-4">
                         <button onclick="switchTab(3)" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-6 py-3 rounded-xl text-xs shadow-lg transition-all flex items-center gap-2">
@@ -91,7 +94,7 @@
                         <span class="text-3xl font-extrabold text-slate-900">303</span>
                         <span class="text-[11px] text-emerald-600 font-medium block mt-1"><i class="fa-solid fa-hospital-user"></i> Pacientes Pediátricos</span>
                     </div>
-                    <div class="bg-blue-50 text-blue-600 p-4 rounded-2xl">
+                    <div class="bg-blue-50 text-blue-600 p-4 rounded-2xl shadow-inner">
                         <i class="fa-solid fa-users-viewfinder text-2xl"></i>
                     </div>
                 </div>
@@ -100,9 +103,9 @@
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Capacidad AUC</span>
                         <span class="text-3xl font-extrabold text-amber-500">0.86</span>
-                        <span class="text-[11px] text-slate-500 font-medium block mt-1"><i class="fa-solid fa-chart-line"></i> Curva ROC de Discriminación</span>
+                        <span class="text-[11px] text-slate-500 font-medium block mt-1"><i class="fa-solid fa-chart-line"></i> Curva ROC (p &lt; 0.001)</span>
                     </div>
-                    <div class="bg-amber-50 text-amber-600 p-4 rounded-2xl">
+                    <div class="bg-amber-50 text-amber-600 p-4 rounded-2xl shadow-inner">
                         <i class="fa-solid fa-chart-pie text-2xl"></i>
                     </div>
                 </div>
@@ -111,9 +114,9 @@
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Sensibilidad</span>
                         <span class="text-3xl font-extrabold text-blue-600">84.1%</span>
-                        <span class="text-[11px] text-blue-600 font-medium block mt-1"><i class="fa-solid fa-check"></i> Priorización de Casos Graves</span>
+                        <span class="text-[11px] text-blue-600 font-medium block mt-1"><i class="fa-solid fa-check"></i> Priorización de Casos</span>
                     </div>
-                    <div class="bg-blue-50 text-blue-600 p-4 rounded-2xl">
+                    <div class="bg-blue-50 text-blue-600 p-4 rounded-2xl shadow-inner">
                         <i class="fa-solid fa-heart-pulse text-2xl"></i>
                     </div>
                 </div>
@@ -124,19 +127,19 @@
                         <span class="text-3xl font-extrabold text-emerald-600">94.5%</span>
                         <span class="text-[11px] text-emerald-600 font-medium block mt-1"><i class="fa-solid fa-shield"></i> Seguridad al Descartar</span>
                     </div>
-                    <div class="bg-emerald-50 text-emerald-600 p-4 rounded-2xl">
+                    <div class="bg-emerald-50 text-emerald-600 p-4 rounded-2xl shadow-inner">
                         <i class="fa-solid fa-user-shield text-2xl"></i>
                     </div>
                 </div>
             </div>
 
-            <!-- Tarjetas de Navegación (3 Tarjetas principales) -->
+            <!-- Tarjetas de Navegación (3 Módulos) -->
             <div>
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-bold text-slate-900 flex items-center gap-2">
                         <i class="fa-solid fa-cubes text-blue-600"></i> Módulos Principales de la Plataforma
                     </h2>
-                    <span class="text-xs text-slate-400 font-medium">Haz clic en cualquier tarjeta para navegar</span>
+                    <span class="text-xs text-slate-400 font-medium">Acceso directo a secciones</span>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -146,7 +149,7 @@
                                 <i class="fa-solid fa-filter-circle-dollar"></i>
                             </div>
                             <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">1. Limpieza & EDA</h3>
-                            <p class="text-xs text-slate-500 leading-relaxed">Estandarización de la cohorte de 303 pacientes, codificación binaria 0/1 y discretización fisiológica.</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Estandarización de cohorte, codificación binaria 0/1 y discretización fisiológica por curvas ROC.</p>
                         </div>
                         <div class="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
                             <span>Explorar Dataset</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -159,7 +162,7 @@
                                 <i class="fa-solid fa-brain"></i>
                             </div>
                             <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">2. Modelos & Métricas</h3>
-                            <p class="text-xs text-slate-500 leading-relaxed">Evaluación comparativa de la Regresión Logística y la Red Neuronal (ANN 5-4-1).</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Evaluación comparativa entre Regresión Logística y Red Neuronal Artificial (ANN 5-4-1).</p>
                         </div>
                         <div class="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-indigo-600">
                             <span>Ver Métricas</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
@@ -172,7 +175,7 @@
                                 <i class="fa-solid fa-stethoscope"></i>
                             </div>
                             <h3 class="text-sm font-bold text-slate-900 mb-2 group-hover:text-emerald-600 transition-colors">3. Simulador Clínico</h3>
-                            <p class="text-xs text-slate-500 leading-relaxed">Módulo de Triaje en tiempo real con Ficha de Admisión del Paciente y cálculo de score.</p>
+                            <p class="text-xs text-slate-500 leading-relaxed">Triaje automatizado en tiempo real con Ficha de Admisión y cálculo de score multimodelo.</p>
                         </div>
                         <div class="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-emerald-600">
                             <span>Probar Simulador</span> <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
