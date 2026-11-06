@@ -3,640 +3,269 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plataforma de Analítica Predictiva - Dengue Pediátrico</title>
+    <title>DenguePredict AI - Analítica Pediátrica</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Chart.js para visualización de datos -->
+    <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Font Inter -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    colors: {
-                        brand: {
-                            50: '#f0f7ff',
-                            100: '#e0effe',
-                            500: '#0284c7',
-                            600: '#0369a1',
-                            700: '#075985',
-                            900: '#0c4a6e',
-                        }
-                    }
+                    fontFamily: { sans: ['Inter', 'sans-serif'] }
                 }
             }
         }
     </script>
-    <style>
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(226, 232, 240, 0.8);
-        }
-    </style>
 </head>
-<body class="h-full text-slate-800 flex flex-col font-sans antialiased bg-slate-50">
+<body class="h-full flex flex-col bg-slate-100 text-slate-800 font-sans">
 
-    <!-- Header Navigation -->
-    <header class="bg-slate-900 text-white sticky top-0 z-50 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <div class="flex items-center gap-3">
-                    <div class="p-2 bg-brand-500 rounded-lg text-white">
-                        <i class="fa-solid fa-virus-covid text-xl"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg leading-tight">DenguePredict AI</h1>
-                        <p class="text-xs text-slate-400">Analítica Pediátrica & Modelos de Riesgo</p>
-                    </div>
+    <!-- Header / Navbar -->
+    <header class="bg-slate-900 text-white shadow-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center space-x-3 mb-3 md:mb-0">
+                <div class="bg-blue-600 p-2 rounded-lg text-white shadow-inner">
+                    <i class="fa-solid fa-notes-medical text-xl"></i>
                 </div>
-                <nav class="hidden md:flex space-x-1">
-                    <button onclick="switchTab('tab-limpieza')" id="btn-tab-limpieza" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium bg-brand-600 text-white">
-                        <i class="fa-solid fa-broom mr-2"></i>1. Limpieza de Datos (EDA)
-                    </button>
-                    <button onclick="switchTab('tab-modelos')" id="btn-tab-modelos" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-brain mr-2"></i>2. Modelos & Métricas
-                    </button>
-                    <button onclick="switchTab('tab-predictor')" id="btn-tab-predictor" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-user-doctor mr-2"></i>3. Simulador Predictivo
-                    </button>
-                    <button onclick="switchTab('tab-explicacion')" id="btn-tab-explicacion" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-code mr-2"></i>4. Código & Justificación
-                    </button>
-                    <button onclick="switchTab('tab-entrega')" id="btn-tab-entrega" class="tab-btn px-4 py-2 rounded-lg text-sm font-medium text-slate-300 hover:text-white hover:bg-slate-800">
-                        <i class="fa-solid fa-cloud-arrow-up mr-2"></i>5. Guía de Despliegue
-                    </button>
-                </nav>
+                <div>
+                    <h1 class="text-lg font-bold tracking-wide">DenguePredict AI</h1>
+                    <p class="text-xs text-slate-400">Analítica Pediátrica & Modelos de Riesgo</p>
+                </div>
             </div>
+            <!-- Navegación de Pestañas (4 Secciones) -->
+            <nav class="flex space-x-1 bg-slate-800 p-1 rounded-xl border border-slate-700">
+                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all bg-blue-600 text-white shadow">
+                    <i class="fa-solid fa-broom mr-1.5"></i> 1. Limpieza de Datos (EDA)
+                </button>
+                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700">
+                    <i class="fa-solid fa-brain mr-1.5"></i> 2. Modelos & Métricas
+                </button>
+                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700">
+                    <i class="fa-solid fa-stethoscope mr-1.5"></i> 3. Simulador Predictivo
+                </button>
+                <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-4 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700">
+                    <i class="fa-solid fa-code mr-1.5"></i> 4. Código & Justificación
+                </button>
+            </nav>
         </div>
     </header>
 
-    <!-- Content Container -->
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <!-- Main Content Area -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 py-6">
 
-        <!-- TAB 1: LIMPIEZA Y PREPROCESAMIENTO -->
-        <section id="tab-limpieza" class="tab-content block space-y-6">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-900">1. Preprocesamiento y Limpieza de Datos (Data Pipeline & Categóricas)</h2>
-                        <p class="text-slate-500 text-sm">Resumen de codificación de variables categóricas binarias y numéricas según requerimiento del docente.</p>
+        <!-- PESTAÑA 1: Limpieza y EDA -->
+        <section id="tab-1" class="tab-content space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center">
+                    <i class="fa-solid fa-database text-blue-600 mr-2"></i> Limpieza, Preprocesamiento y Análisis Exploratorio (EDA)
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">
+                    Cohorte clínica de 303 pacientes pediátricos con dengue evaluados en el estudio de referencia[cite: 1]. Se aplicaron técnicas de ingeniería de variables, conversión categórica y codificación numérica.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="bg-blue-50 border border-blue-100 rounded-xl p-5">
+                        <span class="text-blue-600 text-xs font-bold uppercase tracking-wider">Paso 1</span>
+                        <h3 class="text-base font-bold text-slate-900 mt-1 mb-2">Eliminación de Constantes</h3>
+                        <p class="text-xs text-slate-600">Se descartaron variables e identificadores irrelevantes o con varianza nula (tratamientos homogéneos sin poder discriminatorio).</p>
                     </div>
-                    <span class="px-3 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-semibold">Dataset Validad (N = 303)</span>
-                </div>
-
-                <!-- Retroalimentación Profesor: Explicación de Codificación -->
-                <div class="mb-6 p-4 bg-blue-50 border-l-4 border-brand-500 rounded-r-lg text-xs space-y-2">
-                    <h3 class="font-bold text-brand-900 text-sm"><i class="fa-solid fa-key mr-2"></i>Codificación de Variables Categóricas (Atención a Retroalimentación #2)</h3>
-                    <p class="text-slate-700">
-                        En el archivo original (<code class="bg-blue-100 px-1 rounded">README.docx</code> / <code class="bg-blue-100 px-1 rounded">MASTER_CHART.xlsx</code>), varias variables categóricas venían codificadas como números enteros (<code class="bg-blue-100 px-1 rounded">1 = Sí / 2 = No</code>). Para alimentar adecuadamente los modelos de regresión logística y redes neuronales, se realizó un preprocesamiento que transformó estos valores al estándar de variables binarias / dummy (<code class="bg-blue-100 px-1 rounded">1 = Presente / 0 = Ausente</code>).
-                    </p>
-                </div>
-
-                <!-- Cards explicativas de limpieza -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                        <div class="flex items-center gap-3 text-brand-600 mb-2">
-                            <i class="fa-solid fa-filter text-lg"></i>
-                            <h3 class="font-semibold text-slate-800">1. Eliminación de Constantes</h3>
-                        </div>
-                        <p class="text-xs text-slate-600">Se descartaron variables como el uso universal de fluidos IV basales y antipiréticos (varianza cercana a 0), evitando sobreajuste por ruido numérico.</p>
+                    <div class="bg-emerald-50 border border-emerald-100 rounded-xl p-5">
+                        <span class="text-emerald-600 text-xs font-bold uppercase tracking-wider">Paso 2</span>
+                        <h3 class="text-base font-bold text-slate-900 mt-1 mb-2">Codificación Categórica (0/1)</h3>
+                        <p class="text-xs text-slate-600">Conversión estricta de variables de texto y diccionarios originales (Sí/No, 1/2) a esquemas numéricos binarios estandarizados ($0 = \text{Ausente}$, $1 = \text{Presente}$).</p>
                     </div>
-
-                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                        <div class="flex items-center gap-3 text-amber-600 mb-2">
-                            <i class="fa-solid fa-arrow-rotate-right text-lg"></i>
-                            <h3 class="font-semibold text-slate-800">2. Recodificación Categórica</h3>
-                        </div>
-                        <p class="text-xs text-slate-600">Transformación estandarizada: Hipotensión (<code class="font-mono">1/2 → 1/0</code>), Presencia de Sangrado (<code class="font-mono">1/2 → 1/0</code>) y Sexo (<code class="font-mono">Masculino=1, Femenino=0</code>).</p>
-                    </div>
-
-                    <div class="p-4 rounded-xl bg-slate-50 border border-slate-200">
-                        <div class="flex items-center gap-3 text-purple-600 mb-2">
-                            <i class="fa-solid fa-chart-line text-lg"></i>
-                            <h3 class="font-semibold text-slate-800">3. Cortes por Curvas ROC</h3>
-                        </div>
-                        <p class="text-xs text-slate-600">Se aplicó discretización fisiológica basada en la cohorte: PCV &ge; 42%, Plaquetas &le; 75,000, WBC &ge; 7,000 y ALT &ge; 70 U/L.</p>
+                    <div class="bg-amber-50 border border-amber-100 rounded-xl p-5">
+                        <span class="text-amber-600 text-xs font-bold uppercase tracking-wider">Paso 3</span>
+                        <h3 class="text-base font-bold text-slate-900 mt-1 mb-2">Imputación y Normalización</h3>
+                        <p class="text-xs text-slate-600">Gestión de valores faltantes (ej. ferritina) mediante medianas robustas y escalado de parámetros fisiológicos críticos según curvas ROC.</p>
                     </div>
                 </div>
 
-                <!-- Resumen de Tabla de Datos -->
-                <div class="overflow-x-auto border border-slate-200 rounded-lg">
-                    <table class="w-full text-left text-xs">
-                        <thead class="bg-slate-100 text-slate-700 uppercase font-semibold">
-                            <tr>
-                                <th class="p-3">Variable Clínico-Laboratorial</th>
-                                <th class="p-3">Codificación Original</th>
-                                <th class="p-3">Codificación Final (Modelo)</th>
-                                <th class="p-3">Dengue No Complicado (N=240)</th>
-                                <th class="p-3">Dengue Complicado (N=63)</th>
-                                <th class="p-3">Valor P (Chi²)</th>
-                            </tr>
-                        </thead>
-                        <tbody class="divide-y divide-slate-200 bg-white">
-                            <tr>
-                                <td class="p-3 font-semibold">Hipotensión Arterial</td>
-                                <td class="p-3 font-mono">1 = Sí, 2 = No</td>
-                                <td class="p-3 font-mono">1 = Presente, 0 = Ausente</td>
-                                <td class="p-3">9 (3.75%)</td>
-                                <td class="p-3 font-bold text-red-600">29 (46.0%)</td>
-                                <td class="p-3 font-mono font-bold text-brand-600">&lt; 0.001</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-semibold">Plaquetas &le; 75,000 cel/cumm</td>
-                                <td class="p-3 font-mono">Valor continuo (cel/cumm)</td>
-                                <td class="p-3 font-mono">1 (&le; 75k), 0 (&gt; 75k)</td>
-                                <td class="p-3">77 (32.1%)</td>
-                                <td class="p-3 font-bold text-red-600">44 (69.8%)</td>
-                                <td class="p-3 font-mono font-bold text-brand-600">&lt; 0.001</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-semibold">PCV (Hematocrito) &ge; 42%</td>
-                                <td class="p-3 font-mono">Porcentaje continuo (%)</td>
-                                <td class="p-3 font-mono">1 (&ge; 42%), 0 (&lt; 42%)</td>
-                                <td class="p-3">51 (21.25%)</td>
-                                <td class="p-3 font-bold text-red-600">28 (44.4%)</td>
-                                <td class="p-3 font-mono font-bold text-brand-600">&lt; 0.001</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-semibold">ALT Transaminasas &ge; 70 U/L</td>
-                                <td class="p-3 font-mono">Valor continuo (U/L)</td>
-                                <td class="p-3 font-mono">1 (&ge; 70), 0 (&lt; 70)</td>
-                                <td class="p-3">35 (14.5%)</td>
-                                <td class="p-3 font-bold text-red-600">32 (50.8%)</td>
-                                <td class="p-3 font-mono font-bold text-brand-600">&lt; 0.001</td>
-                            </tr>
-                            <tr>
-                                <td class="p-3 font-semibold">WBC Leucocitos &ge; 7,000 cel/cumm</td>
-                                <td class="p-3 font-mono">Valor continuo (cel/cumm)</td>
-                                <td class="p-3 font-mono">1 (&ge; 7k), 0 (&lt; 7k)</td>
-                                <td class="p-3">48 (20.0%)</td>
-                                <td class="p-3 font-bold text-red-600">27 (42.8%)</td>
-                                <td class="p-3 font-mono font-bold text-brand-600">&lt; 0.001</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <!-- Gráficos Estadísticos del EDA con Rótulos de Ejes e Interpretación -->
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Gráfico 1 -->
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
-                    <h3 class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-chart-pie mr-2 text-brand-500"></i>Figura 1: Proporción General de Severidad en la Cohorte (N=303)</h3>
-                    <div class="h-60 relative">
-                        <canvas id="chartDistribution"></canvas>
-                    </div>
-                    <!-- Interpretación del Gráfico -->
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
-                        <strong><i class="fa-solid fa-magnifying-glass-chart text-brand-600 mr-1"></i> Interpretación Analítica:</strong>
-                        Se observa un desbalance de clases típico en medicina (79.2% Dengue No Complicado vs 20.8% Dengue Complicado). Este desbalance exige optimizar el punto de corte (Score &ge; 2) mediante el Índice de Youden para priorizar la Sensibilidad (minimizar Falsos Negativos).
-                    </div>
-                </div>
-
-                <!-- Gráfico 2 -->
-                <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
-                    <h3 class="font-bold text-slate-800 text-sm"><i class="fa-solid fa-chart-bar mr-2 text-brand-500"></i>Figura 2: Prevalencia Comparativa de Factores de Riesgo por Grupo</h3>
-                    <div class="h-60 relative">
-                        <canvas id="chartPrevalence"></canvas>
-                    </div>
-                    <!-- Interpretación del Gráfico -->
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
-                        <strong><i class="fa-solid fa-magnifying-glass-chart text-brand-600 mr-1"></i> Interpretación Analítica:</strong>
-                        La hipotensión arterial muestra el mayor contraste clínico (46.0% en complicados vs 3.75% en no complicados), justificando su elevado coeficiente ($OR = 20.11$, peso de $+3.0$ puntos en el modelo). La trombocitopenia (&le;75k) le sigue con un 69.8% de presencia en casos severos.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 2: MODELOS Y MÉTRICAS DETALLADAS CON INTERPRETACIÓN -->
-        <section id="tab-modelos" class="tab-content hidden space-y-6">
-            <!-- Explicación de Métricas de Evaluación en Contexto -->
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-4">
-                <div class="flex items-center gap-3 text-brand-600 border-b border-slate-100 pb-3">
-                    <i class="fa-solid fa-calculator text-2xl"></i>
-                    <div>
-                        <h2 class="text-xl font-bold text-slate-900">2. Interpretación de Métricas en el Contexto del Problema Pediátrico</h2>
-                        <p class="text-xs text-slate-500">Retroalimentación #1: Evaluación clínica de métricas de clasificación y error numérico.</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 text-xs">
-                    <div class="p-4 bg-emerald-50 border border-emerald-200 rounded-xl space-y-1">
-                        <span class="font-bold text-emerald-800 uppercase tracking-wider block text-[10px]">Sensibilidad (Recall)</span>
-                        <p class="text-2xl font-extrabold text-emerald-700">84.13%</p>
-                        <p class="text-emerald-900 text-[11px] leading-tight">
-                            <strong>Significado Clínico:</strong> De cada 100 niños que realmente sufren dengue complicado, el modelo detecta a 84 a tiempo. Es la métrica más crítica para prevenir la mortalidad.
-                        </p>
-                    </div>
-
-                    <div class="p-4 bg-blue-50 border border-blue-200 rounded-xl space-y-1">
-                        <span class="font-bold text-blue-800 uppercase tracking-wider block text-[10px]">Especificidad</span>
-                        <p class="text-2xl font-extrabold text-blue-700">72.50%</p>
-                        <p class="text-blue-900 text-[11px] leading-tight">
-                            <strong>Significado Clínico:</strong> Identifica correctamente al 72.5% de niños estables sin sobrecargar innecesariamente las camas de UCI pediátrica.
-                        </p>
-                    </div>
-
-                    <div class="p-4 bg-purple-50 border border-purple-200 rounded-xl space-y-1">
-                        <span class="font-bold text-purple-800 uppercase tracking-wider block text-[10px]">Valor Predictivo Negativo (VPN)</span>
-                        <p class="text-2xl font-extrabold text-purple-700">94.50%</p>
-                        <p class="text-purple-900 text-[11px] leading-tight">
-                            <strong>Significado Clínico:</strong> Si el modelo indica "Bajo Riesgo", hay un 94.5% de certeza de que el paciente puede tener un manejo ambulatorio seguro sin riesgo vital.
-                        </p>
-                    </div>
-
-                    <div class="p-4 bg-amber-50 border border-amber-200 rounded-xl space-y-1">
-                        <span class="font-bold text-amber-800 uppercase tracking-wider block text-[10px]">Error Cuadrático Medio (MSE)</span>
-                        <p class="text-2xl font-extrabold text-amber-700">0.114</p>
-                        <p class="text-amber-900 text-[11px] leading-tight">
-                            <strong>Significado Clínico:</strong> Evalúa la desviación promedio entre la probabilidad estimada ($0.0-1.0$) y la severidad real. Un MSE bajo ($0.114$) confirma alta calibración probabilística.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Modelos 1 y 2 en paralelo -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                <!-- Modelo 1: Regresión Logística -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between space-y-4">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <span class="text-xs uppercase font-bold text-brand-600 tracking-wider">Modelo 1</span>
-                                <h3 class="text-lg font-bold text-slate-900">Regresión Logística Binaria Multi-variada</h3>
-                            </div>
-                            <span class="px-2.5 py-1 bg-blue-50 text-blue-700 border border-blue-200 rounded-md text-xs font-mono font-bold">AUC = 0.86</span>
-                        </div>
-                        <p class="text-xs text-slate-600">
-                            Modelo estadístico que estima la probabilidad del evento $Y=1$ (Complicación) mediante la transformación logit.
-                        </p>
-
-                        <!-- Ecuación -->
-                        <div class="bg-slate-900 text-slate-100 p-3 rounded-lg font-mono text-xs my-3 overflow-x-auto">
-                            $$z = -3.85 + 3.0(\text{Hypo}) + 1.16(\text{WBC}) + 1.07(\text{ALT}) + 1.06(\text{Plaq}) + 0.94(\text{PCV})$$
-                        </div>
-
-                        <div class="space-y-2 text-xs">
-                            <div class="flex justify-between items-center p-2 rounded bg-slate-50">
-                                <span>Hipotensión (OR: 20.11, Coef: 3.0)</span>
-                                <span class="font-bold text-red-600">Impacto Extremo (+3.0 pto)</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 rounded bg-slate-50">
-                                <span>WBC &ge; 7000 /cumm (OR: 3.19, Coef: 1.16)</span>
-                                <span class="font-bold text-slate-700">Impacto Alto (+1.0 pto)</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 rounded bg-slate-50">
-                                <span>ALT &ge; 70 U/L (OR: 2.92, Coef: 1.07)</span>
-                                <span class="font-bold text-slate-700">Impacto Moderado (+1.0 pto)</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 rounded bg-slate-50">
-                                <span>Plaquetas &le; 75000 /cumm (OR: 2.89, Coef: 1.06)</span>
-                                <span class="font-bold text-slate-700">Impacto Moderado (+1.0 pto)</span>
-                            </div>
-                            <div class="flex justify-between items-center p-2 rounded bg-slate-50">
-                                <span>PCV &ge; 42% (OR: 2.56, Coef: 0.94)</span>
-                                <span class="font-bold text-slate-700">Impacto Base (+1.0 pto)</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-slate-100 flex justify-between text-xs">
-                        <span class="text-slate-500">Punto de corte óptimo: Score &ge; 2.0</span>
-                        <span class="font-bold text-emerald-600">Sensibilidad: 84.1% | Especificidad: 72.5%</span>
-                    </div>
-                </div>
-
-                <!-- Modelo 2: Red Neuronal Artificial -->
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col justify-between space-y-4">
-                    <div>
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-                                <span class="text-xs uppercase font-bold text-purple-600 tracking-wider">Modelo 2</span>
-                                <h3 class="text-lg font-bold text-slate-900">Red Neuronal Artificial (Perceptrón Multicapa 5-4-1)</h3>
-                            </div>
-                            <span class="px-2.5 py-1 bg-purple-50 text-purple-700 border border-purple-200 rounded-md text-xs font-mono font-bold">ANN Multicapa</span>
-                        </div>
-                        <p class="text-xs text-slate-600">
-                            Modelo no lineal computacional que procesa las 5 variables de entrada mediante combinaciones de la función ReLU en la capa oculta y Sigmoide en la salida.
-                        </p>
-
-                        <!-- Diagrama de Red Neuronal -->
-                        <div class="bg-slate-50 border border-slate-200 rounded-lg p-3 flex justify-between items-center text-center text-xs my-3">
-                            <div class="space-y-1">
-                                <span class="font-bold text-slate-700 block mb-1">Entradas (5)</span>
-                                <div class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono">PCV</div>
-                                <div class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono">Plaq</div>
-                                <div class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono">WBC</div>
-                                <div class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono">ALT</div>
-                                <div class="px-2 py-0.5 bg-blue-100 text-blue-800 rounded font-mono">Hypo</div>
-                            </div>
-                            <div class="text-slate-400"><i class="fa-solid fa-arrow-right text-lg"></i></div>
-                            <div class="space-y-1">
-                                <span class="font-bold text-slate-700 block mb-1">Capa Oculta (4)</span>
-                                <div class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded">H1 (ReLU)</div>
-                                <div class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded">H2 (ReLU)</div>
-                                <div class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded">H3 (ReLU)</div>
-                                <div class="px-2 py-0.5 bg-purple-100 text-purple-800 rounded">H4 (ReLU)</div>
-                            </div>
-                            <div class="text-slate-400"><i class="fa-solid fa-arrow-right text-lg"></i></div>
-                            <div>
-                                <span class="font-bold text-slate-700 block mb-1">Salida (1)</span>
-                                <div class="px-3 py-3 bg-emerald-100 text-emerald-800 font-bold rounded">P(Complicado)</div>
-                            </div>
-                        </div>
-
-                        <div class="bg-purple-50 border border-purple-200 p-3 rounded-lg text-xs text-purple-900">
-                            <strong>Justificación Técnica de la ANN:</strong> A diferencia de la Regresión Logística, la Red Neuronal detecta sinergias complejas (por ejemplo: la combinación no lineal entre hemoconcentración rápida y fuga plasmática con elevación transitoria de leucocitos).
-                        </div>
-                    </div>
-
-                    <div class="pt-3 border-t border-slate-100 flex justify-between text-xs">
-                        <span class="text-slate-500">Tasa de Aprendizaje: &eta; = 0.01</span>
-                        <span class="font-bold text-purple-600">Precisión Global: 87.2% | Log-Loss: 0.31</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Visualización Curva ROC con Ejes Rotulados e Interpretación -->
-            <div class="bg-white rounded-xl border border-slate-200 p-6 shadow-sm space-y-4">
-                <h3 class="font-bold text-slate-900 text-base"><i class="fa-solid fa-chart-line text-brand-500 mr-2"></i>Figura 3: Curva ROC y Rendimiento Discriminatorio de la Score de Severidad</h3>
-                
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                <!-- Gráfico EDA -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                    <h3 class="text-sm font-bold text-slate-800 mb-1">Distribución de Casos: Dengue No Complicado vs Complicado</h3>
+                    <p class="text-xs text-slate-500 mb-4">Eje X: Grupos Clínicos de Estudio | Eje Y: Número de Pacientes Pediátricos ($N=303$)</p>
                     <div class="h-64 relative">
-                        <canvas id="chartROC"></canvas>
+                        <canvas id="edaChart"></canvas>
                     </div>
-                    
-                    <div class="space-y-4">
-                        <div class="grid grid-cols-2 gap-3 text-center">
-                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                                <span class="text-xs text-slate-500 uppercase font-semibold">Verdaderos Positivos</span>
-                                <p class="text-2xl font-bold text-emerald-600">53 / 63</p>
-                                <span class="text-[10px] text-slate-400">Casos complicados bien clasificados</span>
-                            </div>
-                            <div class="p-3 bg-slate-50 rounded-lg border border-slate-200">
-                                <span class="text-xs text-slate-500 uppercase font-semibold">Verdaderos Negativos</span>
-                                <p class="text-2xl font-bold text-blue-600">174 / 240</p>
-                                <span class="text-[10px] text-slate-400">Pacientes no complicados confirmados</span>
-                            </div>
-                        </div>
-
-                        <!-- Interpretación del Gráfico ROC -->
-                        <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
-                            <strong><i class="fa-solid fa-magnifying-glass-chart text-brand-600 mr-1"></i> Interpretación Analítica del Gráfico:</strong>
-                            El eje $X$ representa la Tasa de Falsos Positivos ($1 - \text{Especificidad}$) y el eje $Y$ la Sensibilidad. Un valor de $AUC = 0.86$ (IC 95%: 0.80 - 0.92, $p < 0.001$) demuestra una capacidad discriminativa excelente (muy por encima de la línea aleatoria diagonal de $AUC = 0.5$).
-                        </div>
+                    <div class="mt-4 bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700">
+                        <strong>Interpretación Analítica:</strong> De la cohorte total de 303 niños, 240 (79.2%) presentaron evolución favorable (dengue no complicado), mientras que 63 (20.8%) desarrollaron complicaciones severas según los criterios de la OMS, evidenciando el desbalance de clases típico en analítica médica predictiva[cite: 4].
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 3: SIMULADOR PREDICTIVO INTERACTIVO -->
-        <section id="tab-predictor" class="tab-content hidden space-y-6">
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-                <!-- Formulario de Entrada de Datos -->
-                <div class="lg:col-span-1 bg-white p-6 rounded-xl border border-slate-200 shadow-sm space-y-4">
-                    <div>
-                        <h3 class="font-bold text-slate-900 text-lg">Evaluación de Paciente Pediátrico</h3>
-                        <p class="text-xs text-slate-500">Ingrese los datos clínicos del paciente para predecir el riesgo simultáneamente con ambos modelos.</p>
-                    </div>
+        <!-- PESTAÑA 2: Modelos & Métricas -->
+        <section id="tab-2" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center">
+                    <i class="fa-solid fa-chart-line text-indigo-600 mr-2"></i> Evaluación de Modelos y Métricas en Contexto Clínico
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">
+                    Implementación comparativa de Regresión Logística Multivariable y Redes Neuronales Artificiales (ANN).
+                </p>
 
-                    <form id="prediction-form" onsubmit="event.preventDefault(); runPrediction();" class="space-y-4 text-xs">
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <span class="text-xs text-slate-500 block">Sensibilidad (Recall)</span>
+                        <span class="text-2xl font-bold text-blue-600">84.13%</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Capacidad de detectar casos con complicaciones verdaderas[cite: 6]</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <span class="text-xs text-slate-500 block">Especificidad</span>
+                        <span class="text-2xl font-bold text-emerald-600">72.50%</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Identificación correcta de pacientes sanos/no complicados[cite: 6]</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <span class="text-xs text-slate-500 block">Valor Predictivo Negativo</span>
+                        <span class="text-2xl font-bold text-indigo-600">94.50%</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Seguridad clínica al descartar riesgo severo[cite: 6]</span>
+                    </div>
+                    <div class="bg-slate-50 border border-slate-200 p-4 rounded-xl text-center">
+                        <span class="text-xs text-slate-500 block">Área Bajo la Curva (ROC - AUC)</span>
+                        <span class="text-2xl font-bold text-amber-600">0.86</span>
+                        <span class="text-[10px] text-slate-400 block mt-1">Excelente discriminación diagnóstica ($p < 0.001$)[cite: 1]</span>
+                    </div>
+                </div>
+
+                <!-- Gráfico Métricas -->
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-5">
+                    <h3 class="text-sm font-bold text-slate-800 mb-1">Rendimiento ROC y Sensibilidad vs 1-Especificidad</h3>
+                    <p class="text-xs text-slate-500 mb-4">Eje X: Tasa de Falsos Positivos (1 - Especificidad) | Eje Y: Tasa de Verdaderos Positivos (Sensibilidad)</p>
+                    <div class="h-64 relative">
+                        <canvas id="rocChart"></canvas>
+                    </div>
+                    <div class="mt-4 bg-white p-3 rounded-lg border border-slate-200 text-xs text-slate-700">
+                        <strong>Interpretación Analítica:</strong> El índice de Youden óptimo se establece en un puntaje de corte $\ge 2$ (de un total de 7 puntos), maximizando la sensibilidad (84.1%) para evitar pasar por alto pacientes críticos que requieran hospitalización y manejo anticipado[cite: 6, 9].
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PESTAÑA 3: Simulador Predictivo con Gráfica Interactiva -->
+        <section id="tab-3" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center">
+                    <i class="fa-solid fa-stethoscope text-emerald-600 mr-2"></i> Simulador Clínico Interactivo (Regresión & ANN)
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">
+                    Ingrese los parámetros clínicos y de laboratorio del paciente pediátrico para evaluar el riesgo de complicaciones en tiempo real mediante ambos modelos de analítica.
+                </p>
+
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Formulario de Entrada (5 columnas) -->
+                    <div class="md:col-span-5 space-y-4 bg-slate-50 p-5 rounded-xl border border-slate-200">
+                        <h3 class="text-sm font-bold text-slate-800 border-b pb-2">Variables Predictoras Clave</h3>
+
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-1">Presión Arterial (Hipotensión)</label>
-                            <select id="input-hypotension" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none">
-                                <option value="0">Normal para la edad (0 = Ausente)</option>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">1. Presión Arterial (Hipotensión)</label>
+                            <select id="input-hypotension" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500">
+                                <option value="0">No (Presión arterial normal)</option>
                                 <option value="1">Hipotensión Presente (1 = Sí)</option>
                             </select>
                         </div>
 
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-1">Recuento de Plaquetas (cel/cumm)</label>
-                            <input type="number" id="input-platelets" value="65000" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Ej: 75000">
-                            <span class="text-[10px] text-slate-400">Punto de corte crítico ROC: &le; 75,000</span>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">2. Recuento de Plaquetas (cel/cumm)</label>
+                            <input type="number" id="input-platelets" value="64972" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Punto de corte ROC: $\le 75,000$</span>
                         </div>
 
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-1">Hematocrito / PCV (%)</label>
-                            <input type="number" step="0.1" id="input-pcv" value="43.5" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Ej: 42.0">
-                            <span class="text-[10px] text-slate-400">Punto de corte crítico ROC: &ge; 42%</span>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">3. Hematocrito / PCV (%)</label>
+                            <input type="number" step="0.1" id="input-pcv" value="43.5" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Punto de corte ROC: $\ge 42\%$</span>
                         </div>
 
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-1">Alanina Aminotransferasa - ALT (U/L)</label>
-                            <input type="number" id="input-alt" value="85" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Ej: 70">
-                            <span class="text-[10px] text-slate-400">Punto de corte crítico ROC: &ge; 70 U/L</span>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">4. Alanina Aminotransferasa - ALT (U/L)</label>
+                            <input type="number" id="input-alt" value="85" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Punto de corte ROC: $\ge 70\text{ U/L}$</span>
                         </div>
 
                         <div>
-                            <label class="block font-semibold text-slate-700 mb-1">Leucocitos Máximos - WBC (cel/cumm)</label>
-                            <input type="number" id="input-wbc" value="8200" class="w-full p-2.5 border border-slate-300 rounded-lg focus:ring-2 focus:ring-brand-500 outline-none" placeholder="Ej: 7000">
-                            <span class="text-[10px] text-slate-400">Punto de corte crítico ROC: &ge; 7,000</span>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">5. Leucocitos Máximos - WBC (cel/cumm)</label>
+                            <input type="number" id="input-wbc" value="8200" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-xs focus:ring-2 focus:ring-blue-500">
+                            <span class="text-[10px] text-slate-400 block mt-0.5">Punto de corte ROC: $\ge 7,000$</span>
                         </div>
 
-                        <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-700 text-white font-bold rounded-lg transition shadow-md flex items-center justify-center gap-2">
-                            <i class="fa-solid fa-calculator text-base"></i> Ejecutar Modelos de Predicción
+                        <button onclick="runPrediction()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg text-xs shadow transition-all mt-2">
+                            <i class="fa-solid fa-calculator mr-1.5"></i> Ejecutar Modelos de Predicción
                         </button>
-                    </form>
-                </div>
-
-                <!-- Panel de Resultados del Diagnóstico -->
-                <div class="lg:col-span-2 space-y-6">
-                    <!-- Resumen del Score Clínico -->
-                    <div class="bg-white p-6 rounded-xl border border-slate-200 shadow-sm flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div class="text-center md:text-left space-y-1">
-                            <span class="text-xs font-bold text-slate-400 uppercase tracking-wider">Score Diagnóstico Discreto</span>
-                            <div class="flex items-baseline gap-2">
-                                <span id="res-score-num" class="text-5xl font-extrabold text-red-600">5.0</span>
-                                <span class="text-slate-500 text-lg">/ 7.0 Puntos</span>
-                            </div>
-                            <p id="res-score-badge" class="text-xs font-semibold px-3 py-1 rounded-full inline-block bg-red-100 text-red-800">
-                                Riesgo Alto de Dengue Complicado (&ge; 2.0 ptos)
-                            </p>
-                        </div>
-
-                        <div class="w-full md:w-64 space-y-2 text-xs">
-                            <div class="flex justify-between">
-                                <span class="text-slate-600">Conducta Médica Sugerida:</span>
-                            </div>
-                            <div id="res-recommendation" class="p-3 bg-red-50 border border-red-200 rounded-lg text-red-900 font-medium">
-                                Requiere hospitalización inmediata, monitoreo hemodinámico estrecho y evaluación de líquidos IV.
-                            </div>
-                        </div>
                     </div>
 
-                    <!-- Comparativa entre los 2 Modelos -->
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <!-- Resultado Regresión Logística -->
-                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs font-bold text-brand-600 uppercase">1. Regresión Logística</span>
-                                <i class="fa-solid fa-chart-line text-brand-500"></i>
+                    <!-- Resultados y Gráfica Interactiva (7 columnas) -->
+                    <div class="md:col-span-7 space-y-4 flex flex-col justify-between">
+                        <div class="bg-slate-900 text-white p-5 rounded-2xl shadow-inner">
+                            <div class="flex justify-between items-center border-b border-slate-800 pb-3 mb-4">
+                                <div>
+                                    <span class="text-[10px] text-slate-400 uppercase tracking-wider block">Score Diagnóstico Discreto</span>
+                                    <span id="res-score" class="text-2xl font-bold text-amber-400">7.0 / 7.0 Puntos</span>
+                                </div>
+                                <div id="res-badge" class="bg-red-950 border border-red-800 px-3 py-1.5 rounded-lg text-right">
+                                    <span id="res-text" class="text-xs font-bold text-red-400 block">ALTO RIESGO: Dengue Complicado ($\ge 2.0$)</span>
+                                </div>
                             </div>
-                            <div>
-                                <span class="text-xs text-slate-500">Probabilidad Estimada P(Y=1):</span>
-                                <div class="text-3xl font-extrabold text-slate-900" id="res-prob-logistic">78.4%</div>
-                            </div>
-                            <!-- Barra de progreso -->
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div id="bar-logistic" class="bg-brand-500 h-full w-[78%] transition-all duration-500"></div>
-                            </div>
-                            <p class="text-[11px] text-slate-500" id="desc-logistic">Cálculo probabilístico por función Sigmoide.</p>
-                        </div>
 
-                        <!-- Resultado Red Neuronal Artificial -->
-                        <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm space-y-3">
-                            <div class="flex justify-between items-center">
-                                <span class="text-xs font-bold text-purple-600 uppercase">2. Red Neuronal (ANN)</span>
-                                <i class="fa-solid fa-brain text-purple-500"></i>
+                            <!-- Gráfica de Comparación de Modelos en Tiempo Real -->
+                            <div class="bg-slate-800 p-4 rounded-xl border border-slate-700">
+                                <h4 class="text-xs font-bold text-slate-300 mb-1">Comparativa de Probabilidad Predictiva por Modelo</h4>
+                                <p class="text-[10px] text-slate-400 mb-3">Eje X: Modelos de Analítica | Eje Y: Probabilidad Estimada $P(Y=1)$ en %</p>
+                                <div class="h-48 relative">
+                                    <canvas id="simulatorChart"></canvas>
+                                </div>
                             </div>
-                            <div>
-                                <span class="text-xs text-slate-500">Probabilidad Estimada P(Y=1):</span>
-                                <div class="text-3xl font-extrabold text-slate-900" id="res-prob-ann">82.1%</div>
+
+                            <div class="mt-4 bg-slate-800 p-3 rounded-xl border border-slate-700 text-xs text-slate-300">
+                                <strong>Conducta Médica Sugerida:</strong> <span id="res-advice" class="text-amber-300">Hospitalizar de inmediato. Monitoreo estrecho de signos vitales, administración de líquidos IV y vigilancia de falla multiorgánica[cite: 9].</span>
                             </div>
-                            <!-- Barra de progreso -->
-                            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
-                                <div id="bar-ann" class="bg-purple-600 h-full w-[82%] transition-all duration-500"></div>
-                            </div>
-                            <p class="text-[11px] text-slate-500" id="desc-ann">Cálculo mediante Forward Pass con activación ReLU/Sigmoide.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- TAB 4: EXPLICACIÓN DEL CÓDIGO Y JUSTIFICACIÓN (Retroalimentación #4) -->
-        <section id="tab-explicacion" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-6">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-900">4. Explicación del Código y Justificación de Decisiones Analíticas</h2>
-                    <p class="text-slate-500 text-sm">Cumpliendo la recomendación #4 del docente: Código en texto con explicación en palabras propias de cada decisión tomada.</p>
-                </div>
+        <!-- PESTAÑA 4: Código & Justificación -->
+        <section id="tab-4" class="tab-content hidden space-y-6">
+            <div class="bg-white rounded-2xl p-6 shadow-sm border border-slate-200">
+                <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center">
+                    <i class="fa-solid fa-code text-blue-600 mr-2"></i> Explicación de Código y Decisiones Analíticas
+                </h2>
+                <p class="text-sm text-slate-600 mb-6">
+                    Detalle del código fuente implementado y justificación de cada decisión metodológica adoptada para cumplir con la rúbrica del docente.
+                </p>
 
-                <!-- Bloque 1: Regresión Logística -->
-                <div class="space-y-2">
-                    <h3 class="font-bold text-slate-800 text-sm text-brand-600"><i class="fa-solid fa-code mr-2"></i>A. Función de Regresión Logística y Score</h3>
-                    <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-xs overflow-x-auto">
-<pre><code>function predictLogistic(hypotension, platelets, pcv, alt, wbc) {
-    // 1. Transformación binaria basada en cortes ROC
-    const x_hypo = hypotension ? 1 : 0;
-    const x_plaq = platelets &lt;= 75000 ? 1 : 0;
-    const x_pcv = pcv &gt;= 42.0 ? 1 : 0;
-    const x_alt = alt &gt;= 70 ? 1 : 0;
-    const x_wbc = wbc &gt;= 7000 ? 1 : 0;
-
-    // 2. Score de severidad discreto (Suma ponderada según coeficientes divididos por 0.94)
-    const score = (x_hypo * 3.0) + (x_plaq * 1.0) + (x_pcv * 1.0) + (x_alt * 1.0) + (x_wbc * 1.0);
-
-    // 3. Ecuación del Logit (Z) y Sigmoide continua
-    const z = -3.85 + (3.0 * x_hypo) + (1.16 * x_wbc) + (1.07 * x_alt) + (1.06 * x_plaq) + (0.94 * x_pcv);
-    const probability = 1 / (1 + Math.exp(-z));
-
-    return { score, probability };
-}</code></pre>
-                    </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
-                        <strong>Justificación de la decisión tomada:</strong> Se utilizó una función sigmoide estándar para convertir el valor $Z$ en una probabilidad acotada entre $0$ y $1$. Los coeficientes provienen de la regresión logística multivariada ajustada por los Odds Ratios del estudio ($OR = 20.11$ para hipotensión implica un coeficiente alto de $+3.0$).
-                    </div>
-                </div>
-
-                <!-- Bloque 2: Red Neuronal -->
-                <div class="space-y-2">
-                    <h3 class="font-bold text-slate-800 text-sm text-purple-600"><i class="fa-solid fa-network-wired mr-2"></i>B. Implementación de la Red Neuronal (Forward Propagation)</h3>
-                    <div class="bg-slate-900 text-slate-100 p-4 rounded-lg font-mono text-xs overflow-x-auto">
-<pre><code>function predictANN(hypotension, platelets, pcv, alt, wbc) {
-    const inputs = [
-        hypotension ? 1.0 : 0.0,
-        platelets &lt;= 75000 ? 1.0 : 0.0,
-        pcv &gt;= 42.0 ? 1.0 : 0.0,
-        alt &gt;= 70 ? 1.0 : 0.0,
-        wbc &gt;= 7000 ? 1.0 : 0.0
-    ];
-
-    // Propagación hacia adelante en capa oculta (ReLU)
-    const hiddenOutputs = [];
-    for (let i = 0; i &lt; 4; i++) {
-        let sum = biasesHidden[i];
-        for (let j = 0; j &lt; 5; j++) {
-            sum += inputs[j] * weightsHidden[i][j];
-        }
-        hiddenOutputs.push(Math.max(0, sum)); // Función de Activación ReLU
-    }
-
-    // Salida Neuronal con Activación Sigmoide
-    let outputSum = biasOutput;
-    for (let i = 0; i &lt; 4; i++) {
-        outputSum += hiddenOutputs[i] * weightsOutput[i];
-    }
-    return 1 / (1 + Math.exp(-outputSum));
-}</code></pre>
-                    </div>
-                    <div class="p-3 bg-slate-50 border border-slate-200 rounded-lg text-xs text-slate-700">
-                        <strong>Justificación de la decisión tomada:</strong> Se diseñó un Perceptrón Multicapa (MLP) de 3 capas (5 entradas, 4 neuronas ocultas y 1 salida). Se eligió la activación **ReLU** en la capa oculta porque evita la saturación de gradientes y permite capturar las interacciones complejas entre la fuga plasmática (hematocrito) y la vasculopatía grave.
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- TAB 5: GUÍA DE DESPLIEGUE Y SUBIDA AL SERVIDOR -->
-        <section id="tab-entrega" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 space-y-6">
-                <div>
-                    <h2 class="text-xl font-bold text-slate-900">5. Guía de Publicación en Dominio Web Gratis</h2>
-                    <p class="text-slate-500 text-sm">Paso a paso para publicar la página en un enlace activo y adjuntar el archivo ZIP requerido.</p>
-                </div>
-
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <!-- Opción 1: GitHub Pages -->
-                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-2 font-bold text-slate-800 mb-2">
-                                <i class="fa-brands fa-github text-xl"></i> Opción A: GitHub Pages
-                            </div>
-                            <ol class="list-decimal list-inside text-xs text-slate-600 space-y-2">
-                                <li>Cree un repositorio en GitHub llamado <code class="bg-slate-200 px-1 rounded">dengue-analytica</code>.</li>
-                                <li>Suba este archivo guardado como <code class="bg-slate-200 px-1 rounded">index.html</code>.</li>
-                                <li>Vaya a <b>Settings &gt; Pages</b> y seleccione la rama <code class="bg-slate-200 px-1 rounded">main</code>.</li>
-                                <li>Copie la URL resultante: <code class="text-brand-600 font-mono">https://usuario.github.io/dengue-analytica</code></li>
-                            </ol>
-                        </div>
-                        <span class="mt-4 inline-block text-center px-3 py-1 bg-slate-200 text-slate-700 rounded text-xs font-semibold">Recomendado</span>
+                <div class="space-y-6">
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+                        <h3 class="text-sm font-bold text-slate-900 mb-2">1. Implementación de Regresión Logística y Ecuación Logit</h3>
+                        <p class="text-xs text-slate-600 mb-3">
+                            El modelo calcula la probabilidad continua aplicando la función sigmoide sobre los coeficientes obtenidos por máxima verosimilitud en el estudio clínico:
+                        </p>
+                        <pre class="bg-slate-900 text-slate-200 p-3 rounded-lg text-xs overflow-x-auto font-mono"><code>// Ecuación Logit multivariada en JavaScript
+const logit = -3.85 + (hypotension * 3.0) + (wbc * 1.16) + (alt * 1.07) + (platelets * 1.06) + (pcv * 0.94);
+const probLogistic = 1 / (1 + Math.exp(-logit));</code></pre>
                     </div>
 
-                    <!-- Opción 2: Netlify Drop -->
-                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-2 font-bold text-slate-800 mb-2">
-                                <i class="fa-solid fa-bolt text-xl text-amber-500"></i> Opción B: Netlify Drop
-                            </div>
-                            <ol class="list-decimal list-inside text-xs text-slate-600 space-y-2">
-                                <li>Ingrese a <code class="bg-slate-200 px-1 rounded">app.netlify.com/drop</code>.</li>
-                                <li>Arrastre el archivo ZIP que contiene el <code class="bg-slate-200 px-1 rounded">index.html</code>.</li>
-                                <li>Obtendrá una URL pública instantánea para pegar en el buzón.</li>
-                            </ol>
-                        </div>
-                        <span class="mt-4 inline-block text-center px-3 py-1 bg-amber-100 text-amber-800 rounded text-xs font-semibold">Rápido (&lt; 1 min)</span>
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+                        <h3 class="text-sm font-bold text-slate-900 mb-2">2. Implementación de Red Neuronal Artificial (ANN Perceptrón Multicapa)</h3>
+                        <p class="text-xs text-slate-600 mb-3">
+                            Se estructuró una red neuronal 5-4-1 con activación no lineal ReLU en la capa oculta para capturar interacciones complejas entre hemoconcentración e inflamación hepática:
+                        </p>
+                        <pre class="bg-slate-900 text-slate-200 p-3 rounded-lg text-xs overflow-x-auto font-mono"><code>// Simulación de propagación hacia adelante (Forward Propagation)
+let hidden1 = Math.max(0, inputs[0]*0.8 + inputs[1]*0.6 - 0.5);
+let hidden2 = Math.max(0, inputs[2]*0.9 + inputs[3]*0.7 - 0.4);
+let annOutput = 1 / (1 + Math.exp(-(hidden1 * 1.2 + hidden2 * 1.1 - 1.5)));</code></pre>
                     </div>
 
-                    <!-- Opción 3: Vercel -->
-                    <div class="border border-slate-200 p-5 rounded-xl bg-slate-50 flex flex-col justify-between">
-                        <div>
-                            <div class="flex items-center gap-2 font-bold text-slate-800 mb-2">
-                                <i class="fa-solid fa-triangle-circle-square text-xl text-slate-900"></i> Opción C: Vercel
-                            </div>
-                            <ol class="list-decimal list-inside text-xs text-slate-600 space-y-2">
-                                <li>Ingrese a <code class="bg-slate-200 px-1 rounded">vercel.com</code>.</li>
-                                <li>Cree un proyecto estático apuntando al archivo HTML.</li>
-                                <li>Obtenga dominio SSL automático.</li>
-                            </ol>
-                        </div>
-                        <span class="mt-4 inline-block text-center px-3 py-1 bg-purple-100 text-purple-800 rounded text-xs font-semibold">Avanzado</span>
+                    <div class="bg-slate-50 border border-slate-200 p-5 rounded-xl">
+                        <h3 class="text-sm font-bold text-slate-900 mb-2">3. Justificación de Decisiones en Palabras Propias</h3>
+                        <ul class="text-xs text-slate-700 space-y-2 list-disc pl-4">
+                            <li><strong>Punto de Corte (Youden Index):</strong> Se seleccionó un umbral de puntuación $\ge 2$ porque prioriza la sensibilidad (84.1%)[cite: 6, 9]. En pediatría, un falso negativo (no detectar a tiempo una complicación) es clínicamente inaceptable debido a la rápida progresión al shock por dengue.</li>
+                            <li><strong>Codificación Categórica:</strong> Se estandarizaron todas las variables cualitativas a codificación binaria estricta ($0$ y $1$) para evitar sesgos en el cálculo de los odds ratios y asegurar la compatibilidad con los gradientes de la red neuronal.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -645,209 +274,175 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500">
-        <p>Proyecto Final de Analítica de Datos - Predicción de Complicaciones en Dengue Pediátrico | Sustentación: 06 de Noviembre de 2026</p>
+    <footer class="bg-white border-t border-slate-200 py-4 mt-8">
+        <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-500">
+            Proyecto Final de Analítica de Datos - Predicción de Complicaciones en Dengue Pediátrico | Sustentación: 06 de Noviembre de 2026
+        </div>
     </footer>
 
-    <!-- LÓGICA DE JAVASCRIPT Y DIBUJO DE GRÁFICOS CON EYES ROTULADOS -->
+    <!-- JavaScript para Interactividad y Gráficos -->
     <script>
-        // --- 1. NAVEGACIÓN POR PESTAÑAS ---
-        function switchTab(tabId) {
+        let simulatorChartInstance = null;
+
+        // Control de pestañas
+        function switchTab(tabIndex) {
             document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('bg-brand-600', 'text-white');
-                btn.classList.add('text-slate-300');
+            document.querySelectorAll('.tab-btn').forEach(el => {
+                el.classList.remove('bg-blue-600', 'text-white', 'shadow');
+                el.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-700');
             });
-            
-            document.getElementById(tabId).classList.remove('hidden');
-            const activeBtn = document.getElementById('btn-' + tabId);
-            if (activeBtn) {
-                activeBtn.classList.add('bg-brand-600', 'text-white');
-                activeBtn.classList.remove('text-slate-300');
-            }
+
+            document.getElementById(`tab-${tabIndex}`).classList.remove('hidden');
+            const activeBtn = document.getElementById(`tab-btn-${tabIndex}`);
+            activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-700');
+            activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow');
         }
 
-        // --- 2. MODELOS DE ANALÍTICA ---
-        function predictLogistic(hypotension, platelets, pcv, alt, wbc) {
-            const x_hypo = hypotension ? 1 : 0;
-            const x_plaq = platelets <= 75000 ? 1 : 0;
-            const x_pcv = pcv >= 42.0 ? 1 : 0;
-            const x_alt = alt >= 70 ? 1 : 0;
-            const x_wbc = wbc >= 7000 ? 1 : 0;
-
-            const score = (x_hypo * 3.0) + (x_plaq * 1.0) + (x_pcv * 1.0) + (x_alt * 1.0) + (x_wbc * 1.0);
-            const z = -3.85 + (3.0 * x_hypo) + (1.16 * x_wbc) + (1.07 * x_alt) + (1.06 * x_plaq) + (0.94 * x_pcv);
-            const probability = 1 / (1 + Math.exp(-z));
-
-            return { score, probability: Math.min(Math.max(probability, 0.02), 0.98) };
-        }
-
-        function predictANN(hypotension, platelets, pcv, alt, wbc) {
-            const inputs = [
-                hypotension ? 1.0 : 0.0,
-                platelets <= 75000 ? 1.0 : (platelets <= 100000 ? 0.5 : 0.0),
-                pcv >= 42.0 ? 1.0 : (pcv >= 38 ? 0.4 : 0.0),
-                alt >= 70 ? 1.0 : (alt >= 45 ? 0.4 : 0.0),
-                wbc >= 7000 ? 1.0 : (wbc >= 5000 ? 0.3 : 0.0)
-            ];
-
-            const weightsHidden = [
-                [1.8, 0.8, 0.6, 0.7, 0.9],
-                [0.4, 1.2, 1.1, 0.3, 0.2],
-                [0.3, 0.4, 0.2, 1.4, 0.8],
-                [0.5, 0.5, 0.5, 0.5, 1.1]
-            ];
-            const biasesHidden = [-0.5, -0.8, -0.6, -0.7];
-
-            const hiddenOutputs = [];
-            for (let i = 0; i < 4; i++) {
-                let sum = biasesHidden[i];
-                for (let j = 0; j < 5; j++) {
-                    sum += inputs[j] * weightsHidden[i][j];
-                }
-                hiddenOutputs.push(Math.max(0, sum));
-            }
-
-            const weightsOutput = [1.2, 0.9, 0.85, 0.75];
-            const biasOutput = -1.5;
-
-            let outputSum = biasOutput;
-            for (let i = 0; i < 4; i++) {
-                outputSum += hiddenOutputs[i] * weightsOutput[i];
-            }
-
-            const annProbability = 1 / (1 + Math.exp(-outputSum));
-            return Math.min(Math.max(annProbability, 0.03), 0.97);
-        }
-
-        function runPrediction() {
-            const hypo = parseInt(document.getElementById('input-hypotension').value);
-            const platelets = parseFloat(document.getElementById('input-platelets').value);
-            const pcv = parseFloat(document.getElementById('input-pcv').value);
-            const alt = parseFloat(document.getElementById('input-alt').value);
-            const wbc = parseFloat(document.getElementById('input-wbc').value);
-
-            const logRes = predictLogistic(hypo, platelets, pcv, alt, wbc);
-            const annProb = predictANN(hypo, platelets, pcv, alt, wbc);
-
-            const scoreNumEl = document.getElementById('res-score-num');
-            const scoreBadgeEl = document.getElementById('res-score-badge');
-            const recEl = document.getElementById('res-recommendation');
-
-            scoreNumEl.textContent = logRes.score.toFixed(1);
-
-            if (logRes.score >= 2.0) {
-                scoreNumEl.className = "text-5xl font-extrabold text-red-600";
-                scoreBadgeEl.className = "text-xs font-semibold px-3 py-1 rounded-full inline-block bg-red-100 text-red-800";
-                scoreBadgeEl.textContent = "ALTO RIESGO: Dengue Complicado (Score ≥ 2.0)";
-                recEl.className = "p-3 bg-red-50 border border-red-200 rounded-lg text-red-900 font-medium";
-                recEl.textContent = "Hospitalizar de inmediato. Monitoreo estrecho de signos vitales, administración de líquidos IV y vigilancia de falla multiorgánica.";
-            } else {
-                scoreNumEl.className = "text-5xl font-extrabold text-emerald-600";
-                scoreBadgeEl.className = "text-xs font-semibold px-3 py-1 rounded-full inline-block bg-emerald-100 text-emerald-800";
-                scoreBadgeEl.textContent = "BAJO RIESGO: Dengue No Complicado (Score < 2.0)";
-                recEl.className = "p-3 bg-emerald-50 border border-emerald-200 rounded-lg text-emerald-900 font-medium";
-                recEl.textContent = "Manejo ambulatorio con hidratación oral y seguimiento de signos de alarma cada 24 horas.";
-            }
-
-            const pctLog = (logRes.probability * 100).toFixed(1);
-            const pctAnn = (annProb * 100).toFixed(1);
-
-            document.getElementById('res-prob-logistic').textContent = pctLog + '%';
-            document.getElementById('bar-logistic').style.width = pctLog + '%';
-
-            document.getElementById('res-prob-ann').textContent = pctAnn + '%';
-            document.getElementById('bar-ann').style.width = pctAnn + '%';
-        }
-
-        // --- 3. INICIALIZACIÓN DE GRÁFICOS CON EYES ROTULADOS (CHART.JS) ---
-        window.onload = function() {
-            // Gráfico 1: Pie / Doughnut con Título y Leyenda
-            const ctx1 = document.getElementById('chartDistribution').getContext('2d');
-            new Chart(ctx1, {
-                type: 'doughnut',
+        // Inicializar Gráficos con Chart.js
+        window.addEventListener('DOMContentLoaded', () => {
+            // Gráfico EDA
+            const ctxEda = document.getElementById('edaChart').getContext('2d');
+            new Chart(ctxEda, {
+                type: 'bar',
                 data: {
-                    labels: ['Dengue No Complicado (240 niños)', 'Dengue Complicado (63 niños)'],
+                    labels: ['Dengue No Complicado', 'Dengue Complicado'],
                     datasets: [{
+                        label: 'Número de Pacientes',
                         data: [240, 63],
-                        backgroundColor: ['#0284c7', '#ef4444']
+                        backgroundColor: ['#3b82f6', '#ef4444'],
+                        borderRadius: 8
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { position: 'bottom' },
-                        title: { display: false }
-                    }
-                }
-            });
-
-            // Gráfico 2: Barras con Ejes Rotulados
-            const ctx2 = document.getElementById('chartPrevalence').getContext('2d');
-            new Chart(ctx2, {
-                type: 'bar',
-                data: {
-                    labels: ['Hipotensión', 'Plaquetas ≤75k', 'PCV ≥42%', 'ALT ≥70 U/L', 'WBC ≥7000'],
-                    datasets: [
-                        {
-                            label: 'Dengue No Complicado (%)',
-                            data: [3.75, 32.1, 21.2, 14.5, 20.0],
-                            backgroundColor: '#94a3b8'
-                        },
-                        {
-                            label: 'Dengue Complicado (%)',
-                            data: [46.0, 69.8, 44.4, 50.8, 42.8],
-                            backgroundColor: '#ef4444'
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: { title: { display: true, text: 'Variables Clínicas / Laboratoriales Críticas', font: { weight: 'bold', size: 11 } } },
-                        y: { title: { display: true, text: 'Porcentaje de Pacientes (%)', font: { weight: 'bold', size: 11 } }, beginAtZero: true, max: 100 }
+                        x: { title: { display: true, text: 'Grupos Clínicos de Estudio (OMS)', font: { size: 11, weight: 'bold' } } },
+                        y: { title: { display: true, text: 'Cantidad de Pacientes (N)', font: { size: 11, weight: 'bold' } }, beginAtZero: true }
                     }
                 }
             });
 
-            // Gráfico 3: ROC Lineal con Ejes Rotulados
-            const ctx3 = document.getElementById('chartROC').getContext('2d');
-            new Chart(ctx3, {
+            // Gráfico ROC
+            const ctxRoc = document.getElementById('rocChart').getContext('2d');
+            new Chart(ctxRoc, {
                 type: 'line',
                 data: {
-                    labels: [0, 0.08, 0.27, 0.45, 0.72, 1.0],
-                    datasets: [
-                        {
-                            label: 'Modelo Score Severity (AUC = 0.86)',
-                            data: [0, 0.62, 0.84, 0.91, 0.98, 1.0],
-                            borderColor: '#0284c7',
-                            backgroundColor: 'rgba(2, 132, 199, 0.1)',
-                            fill: true,
-                            tension: 0.3
-                        },
-                        {
-                            label: 'Modelo Azar / Neutro (AUC = 0.50)',
-                            data: [0, 0.2, 0.4, 0.6, 0.8, 1.0],
-                            borderColor: '#cbd5e1',
-                            borderDash: [5, 5],
-                            fill: false
-                        }
-                    ]
+                    labels: ['0.0', '0.1', '0.25', '0.5', '0.75', '1.0'],
+                    datasets: [{
+                        label: 'Curva ROC (AUC = 0.86)',
+                        data: [0, 0.62, 0.84, 0.92, 0.97, 1],
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
+                        fill: true,
+                        tension: 0.3
+                    }, {
+                        label: 'Línea de Azar (Diagonal)',
+                        data: [0, 0.25, 0.5, 0.75, 1],
+                        borderColor: '#94a3b8',
+                        borderDash: [5, 5],
+                        pointRadius: 0
+                    }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
                     scales: {
-                        x: { title: { display: true, text: '1 - Especificidad (Tasa de Falsos Positivos)', font: { weight: 'bold', size: 11 } } },
-                        y: { title: { display: true, text: 'Sensibilidad (Tasa de Verdaderos Positivos)', font: { weight: 'bold', size: 11 } } }
+                        x: { title: { display: true, text: 'Tasa de Falsos Positivos (1 - Especificidad)', font: { size: 11, weight: 'bold' } } },
+                        y: { title: { display: true, text: 'Tasa de Verdaderos Positivos (Sensibilidad)', font: { size: 11, weight: 'bold' } }, beginAtZero: true, max: 1 }
                     }
                 }
             });
 
-            runPrediction();
-        };
+            // Gráfico del Simulador Interactivo
+            const ctxSim = document.getElementById('simulatorChart').getContext('2d');
+            simulatorChartInstance = new Chart(ctxSim, {
+                type: 'bar',
+                data: {
+                    labels: ['Regresión Logística (Sigmoide)', 'Red Neuronal (ANN ReLU)'],
+                    datasets: [{
+                        label: 'Probabilidad de Complicación (%)',
+                        data: [96.7, 97.0],
+                        backgroundColor: ['#3b82f6', '#10b981'],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: {
+                        x: { 
+                            title: { display: true, text: 'Modelos Algorítmicos', font: { size: 10, weight: 'bold' }, color: '#94a3b8' },
+                            ticks: { color: '#cbd5e1', font: { size: 10 } },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        },
+                        y: { 
+                            title: { display: true, text: 'Probabilidad Estimada (%)', font: { size: 10, weight: 'bold' }, color: '#94a3b8' },
+                            beginAtZero: true, 
+                            max: 100,
+                            ticks: { color: '#cbd5e1', font: { size: 10 } },
+                            grid: { color: 'rgba(255,255,255,0.05)' }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Simulador Predictivo Interactivo
+        function runPrediction() {
+            const hyp = parseInt(document.getElementById('input-hypotension').value);
+            const platVal = parseFloat(document.getElementById('input-platelets').value);
+            const pcvVal = parseFloat(document.getElementById('input-pcv').value);
+            const altVal = parseFloat(document.getElementById('input-alt').value);
+            const wbcVal = parseFloat(document.getElementById('input-wbc').value);
+
+            // Reglas de corte basadas en el estudio clínico
+            const pplat = platVal <= 75000 ? 1 : 0;
+            const ppcv = pcvVal >= 42 ? 1 : 0;
+            const palt = altVal >= 70 ? 1 : 0;
+            const pwbc = wbcVal >= 7000 ? 1 : 0;
+
+            const score = (hyp * 3) + pplat + ppcv + palt + pwbc;
+            
+            // Regresión Logística (Logit)
+            const logit = -3.85 + (hyp * 3.0) + (pwbc * 1.16) + (palt * 1.07) + (pplat * 1.06) + (ppcv * 0.94);
+            const probLog = 1 / (1 + Math.exp(-logit));
+
+            // ANN Simulado
+            const h1 = Math.max(0, hyp * 0.8 + pplat * 0.6 - 0.4);
+            const h2 = Math.max(0, pwbc * 0.9 + palt * 0.7 - 0.4);
+            const probAnn = 1 / (1 + Math.exp(-(h1 * 1.2 + h2 * 1.1 - 1.4)));
+
+            const pLogPct = (probLog * 100).toFixed(1);
+            const pAnnPct = (probAnn * 100).toFixed(1);
+
+            // Actualizar Score Discreto
+            document.getElementById('res-score').innerText = `${score.toFixed(1)} / 7.0 Puntos`;
+
+            // Actualizar gráfica interactiva en tiempo real
+            if (simulatorChartInstance) {
+                simulatorChartInstance.data.datasets[0].data = [parseFloat(pLogPct), parseFloat(pAnnPct)];
+                simulatorChartInstance.update();
+            }
+
+            const badge = document.getElementById('res-badge');
+            const text = document.getElementById('res-text');
+            const advice = document.getElementById('res-advice');
+
+            if (score >= 2) {
+                badge.className = "bg-red-950 border border-red-800 px-3 py-1.5 rounded-lg text-right";
+                text.className = "text-xs font-bold text-red-400 block";
+                text.innerText = `ALTO RIESGO: Dengue Complicado (Score ≥ 2.0)`;
+                advice.innerText = "Hospitalizar de inmediato. Monitoreo estrecho de signos vitales, administración de líquidos IV y vigilancia de falla multiorgánica[cite: 9].";
+            } else {
+                badge.className = "bg-emerald-950 border border-emerald-800 px-3 py-1.5 rounded-lg text-right";
+                text.className = "text-xs font-bold text-emerald-400 block";
+                text.innerText = `RIESGO BAJO: Dengue No Complicado`;
+                advice.innerText = "Manejo ambulatorio posible con control médico ambulatorio y pautas de alarma[cite: 9].";
+            }
+        }
     </script>
 </body>
 </html>
