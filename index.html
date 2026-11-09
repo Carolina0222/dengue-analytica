@@ -36,7 +36,7 @@
                     <h1 class="text-base font-bold tracking-tight text-white flex items-center gap-2">
                         DenguePredict AI 
                         <span class="bg-emerald-500/20 text-emerald-400 text-[10px] font-semibold px-2 py-0.5 rounded-full border border-emerald-500/30 flex items-center gap-1">
-                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Hospital Ready v4.6
+                            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Hospital Ready v4.8
                         </span>
                     </h1>
                     <p class="text-xs text-slate-400">Sistema de Triaje y Soporte Predictivo en Dengue Pediátrico</p>
@@ -44,19 +44,19 @@
             </div>
             <!-- Navegación de Pestañas -->
             <nav class="flex flex-wrap justify-center gap-1.5 bg-slate-800/80 p-1.5 rounded-xl border border-slate-700/60 shadow-inner">
-                <button onclick="switchTab(0)" id="tab-btn-0" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all bg-blue-600 text-white shadow-md flex items-center gap-1.5">
+                <button type="button" onclick="switchTab(0)" id="tab-btn-0" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all bg-blue-600 text-white shadow-md flex items-center gap-1.5">
                     <i class="fa-solid fa-house"></i> Inicio
                 </button>
-                <button onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button type="button" onclick="switchTab(1)" id="tab-btn-1" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-database"></i> 1. Limpieza & EDA
                 </button>
-                <button onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button type="button" onclick="switchTab(2)" id="tab-btn-2" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-brain"></i> 2. Modelos & Métricas
                 </button>
-                <button onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button type="button" onclick="switchTab(3)" id="tab-btn-3" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-stethoscope"></i> 3. Simulador Individual
                 </button>
-                <button onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
+                <button type="button" onclick="switchTab(4)" id="tab-btn-4" class="tab-btn px-3.5 py-2 rounded-lg text-xs font-semibold transition-all text-slate-300 hover:text-white hover:bg-slate-700/50 flex items-center gap-1.5">
                     <i class="fa-solid fa-file-excel"></i> 4. Predicción por Lote
                 </button>
             </nav>
@@ -81,10 +81,10 @@
                         Plataforma clínica de alta precisión desarrollada para urgencias pediátricas. Integra Inteligencia Artificial (Red Neuronal ANN) y Regresión Logística Multivariable para detectar precozmente el riesgo de complicaciones severas, tanto de forma individual como por lotes en Excel.
                     </p>
                     <div class="pt-2 flex flex-wrap gap-4">
-                        <button onclick="switchTab(3)" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-6 py-3 rounded-xl text-xs shadow-lg transition-all flex items-center gap-2">
+                        <button type="button" onclick="switchTab(3)" class="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-semibold px-6 py-3 rounded-xl text-xs shadow-lg transition-all flex items-center gap-2">
                             <i class="fa-solid fa-laptop-medical text-sm"></i> Abrir Simulador Individual
                         </button>
-                        <button onclick="switchTab(4)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 rounded-xl text-xs shadow-lg transition-all flex items-center gap-2">
+                        <button type="button" onclick="switchTab(4)" class="bg-emerald-600 hover:bg-emerald-500 text-white font-semibold px-6 py-3 rounded-xl text-xs shadow-lg transition-all flex items-center gap-2">
                             <i class="fa-solid fa-file-excel text-sm"></i> Predicción por Lote (XLSX)
                         </button>
                     </div>
@@ -93,7 +93,7 @@
 
             <!-- KPIs -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Cohorte Analizada</span>
                         <span class="text-3xl font-extrabold text-slate-900">303</span>
@@ -104,7 +104,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Capacidad AUC</span>
                         <span class="text-3xl font-extrabold text-amber-500">0.86</span>
@@ -115,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">Sensibilidad</span>
                         <span class="text-3xl font-extrabold text-blue-600">84.1%</span>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
 
-                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-md transition-all flex items-center justify-between">
                     <div>
                         <span class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-1">VPN Clínico</span>
                         <span class="text-3xl font-extrabold text-emerald-600">94.5%</span>
@@ -148,7 +148,7 @@
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div onclick="switchTab(1)" class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="switchTab(1)" class="group bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-xl hover:border-blue-400 transition-all cursor-pointer flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center text-lg font-bold mb-4 group-hover:scale-110 transition-all">
                                 <i class="fa-solid fa-filter-circle-dollar"></i>
@@ -161,7 +161,7 @@
                         </div>
                     </div>
 
-                    <div onclick="switchTab(2)" class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-indigo-400 transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="switchTab(2)" class="group bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-xl hover:border-indigo-400 transition-all cursor-pointer flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-indigo-100 text-indigo-600 flex items-center justify-center text-lg font-bold mb-4 group-hover:scale-110 transition-all">
                                 <i class="fa-solid fa-brain"></i>
@@ -174,7 +174,7 @@
                         </div>
                     </div>
 
-                    <div onclick="switchTab(3)" class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-emerald-400 transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="switchTab(3)" class="group bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-xl hover:border-emerald-400 transition-all cursor-pointer flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center text-lg font-bold mb-4 group-hover:scale-110 transition-all">
                                 <i class="fa-solid fa-stethoscope"></i>
@@ -187,7 +187,7 @@
                         </div>
                     </div>
 
-                    <div onclick="switchTab(4)" class="group bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm hover:shadow-xl hover:border-amber-400 transition-all cursor-pointer flex flex-col justify-between">
+                    <div onclick="switchTab(4)" class="group bg-white p-6 rounded-2xl border border-slate-200/85 shadow-sm hover:shadow-xl hover:border-amber-400 transition-all cursor-pointer flex flex-col justify-between">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center text-lg font-bold mb-4 group-hover:scale-110 transition-all">
                                 <i class="fa-solid fa-file-excel"></i>
@@ -205,7 +205,7 @@
 
         <!-- PESTAÑA 1: Limpieza y EDA -->
         <section id="tab-1" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
+            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/85">
                 <div class="flex justify-between items-start mb-6">
                     <div>
                         <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -249,7 +249,7 @@
 
         <!-- PESTAÑA 2: Modelos & Métricas -->
         <section id="tab-2" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
+            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/85">
                 <div class="mb-6">
                     <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
                         <i class="fa-solid fa-chart-pie text-indigo-600"></i> Evaluación de Modelos y Métricas de Rendimiento Clínico
@@ -293,7 +293,7 @@
 
         <!-- PESTAÑA 3: Simulador Clínico Individual (20 Variables) -->
         <section id="tab-3" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
+            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/85">
                 <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-4">
                     <div>
                         <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -513,7 +513,7 @@
 
         <!-- PESTAÑA 4: Predicción por Lote (XLSX / CSV) -->
         <section id="tab-4" class="tab-content hidden space-y-6">
-            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/80">
+            <div class="bg-white rounded-2xl p-7 shadow-sm border border-slate-200/85">
                 <div class="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center border-b border-slate-200 pb-4">
                     <div>
                         <h2 class="text-xl font-bold text-slate-900 flex items-center gap-2">
@@ -596,6 +596,41 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!-- Métricas y Analítica del Lote (Agregado abajo) -->
+                    <div class="pt-4 border-t border-slate-200 space-y-4">
+                        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+                            <i class="fa-solid fa-chart-column text-indigo-600"></i> Métricas Analíticas del Lote Evaluado
+                        </h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-xl text-center shadow-xs">
+                                <span class="text-[11px] font-medium text-slate-500 block mb-1">Tasa de Alto Riesgo</span>
+                                <span id="batch-metric-risk-rate" class="text-2xl font-bold text-red-600">0%</span>
+                                <span class="text-[10px] text-slate-400 block mt-1">Porcentaje con Score &ge; 2</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-xl text-center shadow-xs">
+                                <span class="text-[11px] font-medium text-slate-500 block mb-1">Score Promedio</span>
+                                <span id="batch-metric-avg-score" class="text-2xl font-bold text-amber-600">0.0</span>
+                                <span class="text-[10px] text-slate-400 block mt-1">Escala clínica (0.0 - 7.0)</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-xl text-center shadow-xs">
+                                <span class="text-[11px] font-medium text-slate-500 block mb-1">Prob. Media (Reg. Logística)</span>
+                                <span id="batch-metric-avg-log" class="text-2xl font-bold text-blue-600">0%</span>
+                                <span class="text-[10px] text-slate-400 block mt-1">Promedio del lote</span>
+                            </div>
+                            <div class="bg-slate-50 border border-slate-200/80 p-4 rounded-xl text-center shadow-xs">
+                                <span class="text-[11px] font-medium text-slate-500 block mb-1">Prob. Media (Red Neuronal)</span>
+                                <span id="batch-metric-avg-ann" class="text-2xl font-bold text-emerald-600">0%</span>
+                                <span class="text-[10px] text-slate-400 block mt-1">Promedio ANN del lote</span>
+                            </div>
+                        </div>
+
+                        <div class="bg-slate-50 border border-slate-200/70 rounded-2xl p-5">
+                            <h4 class="text-xs font-bold text-slate-800 mb-1">Distribución de Riesgo en el Lote</h4>
+                            <p class="text-[11px] text-slate-500 mb-3">Comparativa visual entre pacientes de Alto Riesgo y Bajo Riesgo</p>
+                            <div class="h-52 relative"><canvas id="batchMetricsChart"></canvas></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -603,7 +638,7 @@
     </main>
 
     <!-- Footer Enterprise -->
-    <footer class="bg-white border-t border-slate-200/80 py-4 mt-8 shadow-xs">
+    <footer class="bg-white border-t border-slate-200/85 py-4 mt-8 shadow-xs">
         <div class="max-w-7xl mx-auto px-4 text-center text-xs text-slate-400 font-medium">
             DenguePredict AI Enterprise &bull; Sistema Hospitalario de Triaje Pediátrico &bull; Todos los derechos reservados
         </div>
@@ -612,6 +647,7 @@
     <!-- JavaScript para Interactividad, Gráficos y Lote XLSX -->
     <script>
         let simulatorChartInstance = null;
+        let batchChartInstance = null;
         let lastBatchResults = [];
 
         function switchTab(tabIndex) {
@@ -621,10 +657,10 @@
                 el.classList.add('text-slate-300', 'hover:text-white', 'hover:bg-slate-700/50');
             });
 
-            const targetTab = document.getElementById(`tab-${tabIndex}`);
+            const targetTab = document.getElementById('tab-' + tabIndex);
             if (targetTab) targetTab.classList.remove('hidden');
 
-            const activeBtn = document.getElementById(`tab-btn-${tabIndex}`);
+            const activeBtn = document.getElementById('tab-btn-' + tabIndex);
             if (activeBtn) {
                 activeBtn.classList.remove('text-slate-300', 'hover:text-white', 'hover:bg-slate-700/50');
                 activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
@@ -788,12 +824,12 @@
             if (res.isHighRisk) {
                 badge.className = "bg-red-950/90 border border-red-700/80 px-4 py-2 rounded-xl text-right shadow-md transition-all";
                 text.className = "text-xs font-bold text-red-400 block";
-                text.innerText = `ALTO RIESGO: Complicación Inminente (Score ≥ 2.0)`;
+                text.innerText = "ALTO RIESGO: Complicación Inminente (Score ≥ 2.0)";
                 advice.innerText = "Hospitalización inmediata obligatoria. Monitoreo estricto de constantes vitales, reanimación hídrica y vigilancia de falla multiorgánica.";
             } else {
                 badge.className = "bg-emerald-950/90 border border-emerald-700/80 px-4 py-2 rounded-xl text-right shadow-md transition-all";
                 text.className = "text-xs font-bold text-emerald-400 block";
-                text.innerText = `RIESGO BAJO: Sin Complicaciones Graves`;
+                text.innerText = "RIESGO BAJO: Sin Complicaciones Graves";
                 advice.innerText = "Manejo ambulatorio viable bajo estricto control médico periódico y vigilancia de signos de alarma.";
             }
         }
@@ -878,6 +914,9 @@
             let total = 0;
             let highRiskCount = 0;
             let lowRiskCount = 0;
+            let sumScore = 0;
+            let sumLog = 0;
+            let sumAnn = 0;
 
             for (let i = 1; i < rows.length; i++) {
                 const cols = rows[i];
@@ -896,13 +935,16 @@
 
                 const res = calculatePatientRisk(hyp, plat, pcv, alt, wbc);
                 total++;
+                sumScore += res.score;
+                sumLog += parseFloat(res.pLogPct);
+                sumAnn += parseFloat(res.pAnnPct);
                 if (res.isHighRisk) highRiskCount++;
                 else lowRiskCount++;
 
                 const riskLabel = res.isHighRisk ? "ALTO RIESGO" : "BAJO RIESGO";
                 const riskBadge = res.isHighRisk 
-                    ? `<span class="bg-red-100 text-red-700 border border-red-200 px-2.5 py-1 rounded-full font-bold text-[10px]">ALTO RIESGO</span>`
-                    : `<span class="bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full font-bold text-[10px]">BAJO RIESGO</span>`;
+                    ? '<span class="bg-red-100 text-red-700 border border-red-200 px-2.5 py-1 rounded-full font-bold text-[10px]">ALTO RIESGO</span>'
+                    : '<span class="bg-emerald-100 text-emerald-700 border border-emerald-200 px-2.5 py-1 rounded-full font-bold text-[10px]">BAJO RIESGO</span>';
 
                 lastBatchResults.push({
                     Nombre: nombre,
@@ -936,7 +978,40 @@
             document.getElementById('batch-total').innerText = total;
             document.getElementById('batch-high-risk').innerText = highRiskCount;
             document.getElementById('batch-low-risk').innerText = lowRiskCount;
+
+            document.getElementById('batch-metric-risk-rate').innerText = ((highRiskCount / total) * 100).toFixed(1) + '%';
+            document.getElementById('batch-metric-avg-score').innerText = (sumScore / total).toFixed(1) + ' / 7.0';
+            document.getElementById('batch-metric-avg-log').innerText = (sumLog / total).toFixed(1) + '%';
+            document.getElementById('batch-metric-avg-ann').innerText = (sumAnn / total).toFixed(1) + '%';
+
             document.getElementById('batch-results-container').classList.remove('hidden');
+
+            try {
+                const ctxBatch = document.getElementById('batchMetricsChart').getContext('2d');
+                if (batchChartInstance) {
+                    batchChartInstance.destroy();
+                }
+                batchChartInstance = new Chart(ctxBatch, {
+                    type: 'bar',
+                    data: {
+                        labels: ['Alto Riesgo (Score >= 2)', 'Bajo Riesgo (Score < 2)'],
+                        datasets: [{
+                            label: 'Pacientes en el Lote',
+                            data: [highRiskCount, lowRiskCount],
+                            backgroundColor: ['#ef4444', '#10b981'],
+                            borderRadius: 8
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: { legend: { display: false } },
+                        scales: {
+                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                        }
+                    }
+                });
+            } catch (e) { console.error("Error Batch chart:", e); }
         }
 
         function exportBatchResultsXLSX() {
